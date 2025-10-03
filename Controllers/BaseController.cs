@@ -28,7 +28,9 @@ namespace WebGallery.Controllers
 
             Stack<Visit> visits = visitingStatistics[path];
 
-            visits.Push(new Visit(path, DateTime.Now));
+            DateTime dateTime = DateTime.Now;
+
+            visits.Push(new Visit(path, request.Method, new DateOnly(dateTime.Year, dateTime.Month, dateTime.Day), new TimeOnly(dateTime.Hour, dateTime.Minute, dateTime.Second)));
         }
 
 

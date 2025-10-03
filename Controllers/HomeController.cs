@@ -32,7 +32,7 @@ namespace WebGallery.Controllers
                 stringBuilder.Append($"<tr>" +
                     $"<td>{lastVisit.Path}</td>" +
                     $"<td>{visits.Count}</td>" +
-                    $"<td>{lastVisit.DateTime}</td>" +
+                    $"<td>{lastVisit.Date} {lastVisit.Time.ToString("HH:mm:ss")}</td>" +
                 $"</tr>");
             }
 
