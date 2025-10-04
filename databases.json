@@ -1,0 +1,11 @@
+{
+  "statistics": {
+    "tittle": "statistics_db",
+
+    "tables": {
+      "pages": "pages",
+
+      "pagesVisits": "pages_visit"
+    }
+  }
+}
