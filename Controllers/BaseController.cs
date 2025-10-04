@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
-using WebGallery.Models;
+using WebGallery.Models.Statistics;
 
 namespace WebGallery.Controllers
 {
@@ -30,7 +30,7 @@ namespace WebGallery.Controllers
 
             DateTime dateTime = DateTime.Now;
 
-            visits.Push(new Visit(path, request.Method, new DateOnly(dateTime.Year, dateTime.Month, dateTime.Day), new TimeOnly(dateTime.Hour, dateTime.Minute, dateTime.Second)));
+            //visits.Push(new Visit(path, request.Method, new DateOnly(dateTime.Year, dateTime.Month, dateTime.Day), new TimeOnly(dateTime.Hour, dateTime.Minute, dateTime.Second)));
         }
 
 
