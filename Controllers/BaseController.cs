@@ -1,14 +1,14 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 using WebGallery.Models.Statistics;
+using WebGallery.Repositories.Contexts;
 
 namespace WebGallery.Controllers
 {
     public class BaseController : Controller
     {
-        protected readonly static Dictionary<string, Stack<Visit>> visitingStatistics = new Dictionary<string, Stack<Visit>>();
+        protected readonly StatisticsContext statisticsContext;
 
-       
         public override void OnActionExecuting(ActionExecutingContext context)
         {
             HttpContext httpContext = context.HttpContext;
@@ -22,27 +22,42 @@ namespace WebGallery.Controllers
             if (path.Length == 0)
                 path = "/";
 
-            if (!visitingStatistics.ContainsKey(path))
-               visitingStatistics.Add(path, new Stack<Visit>());
-            
+            Page ?page = statisticsContext.Pages.FirstOrDefault(p => p.Path == path);
 
-            Stack<Visit> visits = visitingStatistics[path];
+            if (page == null)
+            {
+                page = new Page { Path = path };
+                statisticsContext.Pages.Add(page);
+                statisticsContext.SaveChanges(); 
+            }
 
-            DateTime dateTime = DateTime.Now;
+            Visit visit = new Visit()
+            {
+                PageKey = page.Id,
 
-            //visits.Push(new Visit(path, request.Method, new DateOnly(dateTime.Year, dateTime.Month, dateTime.Day), new TimeOnly(dateTime.Hour, dateTime.Minute, dateTime.Second)));
+                Date = DateOnly.FromDateTime(DateTime.Now),
+
+                Time = new TimeOnly(DateTime.Now.Hour, DateTime.Now.Minute, DateTime.Now.Second),
+
+                Method = context.HttpContext.Request.Method
+            };
+
+            statisticsContext.Visits.Add(visit);
+
+            statisticsContext.SaveChanges();
         }
 
 
         [NonAction()]
         public static Visit LastVisitOnPage(string path)
         {
-            Visit? lastVisit = visitingStatistics[path].Peek();
+            throw new NotImplementedException();
+        }
 
-            if (lastVisit == null)
-                throw new NullReferenceException("Нет посещений!");
 
-            return lastVisit;
+        public BaseController(StatisticsContext statisticsContext)
+        {
+            this.statisticsContext = statisticsContext;
         }
     }
 }

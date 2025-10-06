@@ -1,19 +1,27 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace WebGallery.Models.Statistics
 {
     [Table("page_visits")]
     public class Visit
     {
+        [Key, Column("visit_id")]
+        public int Id { get; set; }
+
+        [Column("page_id")]
+        public required int? PageKey { get; set; }
+      
+        [ForeignKey(nameof(PageKey))]
         public Page? Page { get; set; }
 
         [Column("visit_time")]
-        public TimeOnly Time { get; set; }
+        public required TimeOnly Time { get; set; }
 
         [Column("visit_date")]
-        public DateOnly Date { get; set; }
+        public required DateOnly Date { get; set; }
 
         [Column("request_method")]
-        public string? Method { get; set; }
+        public required string? Method { get; set; }
     }
 }

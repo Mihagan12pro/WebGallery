@@ -4,36 +4,34 @@ namespace WebGallery.Repositories.Contexts
 {
     public abstract class BaseContext : DbContext
     {
-        private readonly ConfigurationBuilder? postgreConfigurationBuilder = new ConfigurationBuilder();
+        private string? _password;
 
-        private readonly IConfigurationRoot? postgreConfigurationRoot;
+        private string? _port;
 
-        private readonly string ?password;
+        private string? _username;
 
-        private readonly string ?port;
-
-        private readonly string ?username;
-
-        private readonly string ?host;
-
-        public string? DatabaseName { get; init; }
+        private string? _host;
+        private string? _databaseName { get; init; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseNpgsql($"Host={host};Port={port};Database={DatabaseName};Username={username};Password={password}");
+            optionsBuilder.UseNpgsql($"Host={_host};Port={_port};Database={_databaseName};Username={_username};Password={_password}");
         }
 
 
-        public BaseContext()
+        public BaseContext(IConfiguration configuration, string databaseName)
         {
-            postgreConfigurationBuilder.AddJsonFile("postgresConfig.json");
+            _host = configuration["postgres:host"];
+            
+            _port = configuration["postgres:port"];
+            
+            _username = configuration["postgres:username"];
 
-            postgreConfigurationRoot = postgreConfigurationBuilder.Build();
+            _password = configuration["postgres:password"];
 
-            password = postgreConfigurationRoot.GetConnectionString(nameof(password));
-            port = postgreConfigurationRoot.GetConnectionString(nameof(port));
-            username = postgreConfigurationRoot.GetConnectionString(nameof(username));
-            host = postgreConfigurationRoot.GetConnectionString(nameof(host));
+            this._databaseName = databaseName;
+
+            Database.EnsureCreated();
         }
     }
 }

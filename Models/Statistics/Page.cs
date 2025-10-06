@@ -10,6 +10,6 @@ namespace WebGallery.Models.Statistics
         public int Id { get; set; }
 
         [Required()]
-        public string? Path { get; set; }
+        public required string? Path { get; set; }
     }
 }

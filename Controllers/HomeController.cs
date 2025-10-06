@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Text;
 using WebGallery.Models.Statistics;
+using WebGallery.Repositories.Contexts;
 
 namespace WebGallery.Controllers
 {
@@ -41,6 +42,11 @@ namespace WebGallery.Controllers
             //return new HtmlResult(stringBuilder);
 
             throw new NotImplementedException();
+        }
+
+
+        public HomeController(StatisticsContext statisticsContext) : base(statisticsContext)
+        {
         }
     }
 }
