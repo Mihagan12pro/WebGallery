@@ -14,35 +14,33 @@ namespace WebGallery.Controllers
         }
 
 
-        [HttpGet(), Route("/stats")]
-        public HtmlResult Stats()
-        {
-            //StringBuilder stringBuilder = new StringBuilder("<h3>Статистика посещаемости страниц</h3><table>");
-            //stringBuilder.Append($"<tr>" +
-            //    $"<td>Страница</td>" +
-            //    $"<td>Количество посещений</td>" +
-            //    $"<td>Последнее посещение</td>" +
-            //$"</tr>");
+        //[HttpGet(), Route("/stats")]
+        //public HtmlResult visits()
+        //{
+        //    Visit[] visits = statisticsContext.Visits.ToArray();
 
-            //foreach (string key in visitingStatistics.Keys)
-            //{
-            //    Stack<Visit> visits = visitingStatistics[key];
+        //    StringBuilder stringBuilder = new StringBuilder("<h3>Статистика посещений страниц</h3><table>");
+        //    stringBuilder.Append($"<tr>" +
+        //        $"<td>Страница</td>" +
+        //        $"<td>Количество посещений</td>" +
+        //        $"<td>Последнее посещение</td>" +
+        //    $"</tr>");
 
-            //    Visit lastVisit = BaseController.LastVisitOnPage(key);
+        //    foreach (string key in visitingStatistics.Keys)
+        //    {
+        //        stringBuilder.Append($"<tr>" +
+        //            $"<td>{lastVisit.Path}</td>" +
+        //            $"<td>{visits.Count}</td>" +
+        //            $"<td>{lastVisit.Date} {lastVisit.Time.ToString("HH:mm:ss")}</td>" +
+        //        $"</tr>");
+        //    }
 
-            //    stringBuilder.Append($"<tr>" +
-            //        $"<td>{lastVisit.Path}</td>" +
-            //        $"<td>{visits.Count}</td>" +
-            //        $"<td>{lastVisit.Date} {lastVisit.Time.ToString("HH:mm:ss")}</td>" +
-            //    $"</tr>");
-            //}
+        //    stringBuilder.Append("</table>");
 
-            //stringBuilder.Append("</table>");
+        //    return new HtmlResult(stringBuilder);
 
-            //return new HtmlResult(stringBuilder);
-
-            throw new NotImplementedException();
-        }
+        //    throw new NotImplementedException();
+        //}
 
 
         public HomeController(StatisticsContext statisticsContext) : base(statisticsContext)
