@@ -35,6 +35,13 @@ namespace WebGallery.Controllers
         }
 
 
+        [HttpGet()]
+        public ViewResult Count()
+        {
+            return View();
+        }
+
+
         public StatsController(StatisticsContext statisticsContext) : base(statisticsContext)
         {
         }
