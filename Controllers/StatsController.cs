@@ -1,7 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.Extensions.Primitives;
-using System.Text;
 using WebGallery.Models.Statistics;
 using WebGallery.Repositories.Contexts;
 
@@ -12,14 +9,29 @@ namespace WebGallery.Controllers
         [HttpGet()]
         public ViewResult Visits()
         {
-            //foreach(Visit visit in statisticsContext.Visits)
-            //{
-            //    var page = visit.Page;
-
-            //    Console.WriteLine(page?.Path);
-            //}
-
             return View(statisticsContext.Visits);
+        }
+
+
+        [HttpGet()]
+        public ViewResult Last()
+        {
+            var lastVisitsAttributes = from visit in statisticsContext.Visits
+                                       group visit by visit.Page into g
+                                       select new Visit()
+                                       {
+                                           Page = g.Key,
+
+                                           Date = g.Max(v => v.Date),
+
+                                           Time = g.Max(v => v.Time),
+
+                                           Method = g.OrderByDescending(v => v.Date).ThenByDescending(v => v.Time).First().Method,
+
+                                           PageKey = g.OrderByDescending(v => v.Date).ThenByDescending(v => v.Time).First().PageKey
+                                       };
+
+            return View(lastVisitsAttributes);
         }
 
 

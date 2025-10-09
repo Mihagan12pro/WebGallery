@@ -9,7 +9,7 @@ namespace WebGallery.Models.Statistics
         [Key, Column("visit_id")]
         public int Id { get; set; }
 
-        [Column("page_id")]
+        [Column("visited_page_id")]
         public required int? PageKey { get; set; }
       
         [ForeignKey(nameof(PageKey))]
@@ -21,7 +21,7 @@ namespace WebGallery.Models.Statistics
         [Column("visit_date")]
         public required DateOnly Date { get; set; }
 
-        [Column("request_method")]
+        [Column("visited_method")]
         public required string? Method { get; set; }
     }
 }
