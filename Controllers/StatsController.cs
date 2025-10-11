@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using System.Collections;
 using WebGallery.Models.Statistics;
+using WebGallery.Models.Statistics.HelpStructs;
 using WebGallery.Repositories.Contexts;
 
 namespace WebGallery.Controllers
@@ -17,19 +19,19 @@ namespace WebGallery.Controllers
         public ViewResult Last()
         {
             var lastVisitsAttributes = from visit in statisticsContext.Visits
-                                       group visit by visit.Page into g
-                                       select new Visit()
-                                       {
-                                           Page = g.Key,
+                                           group visit by visit.Page into g
+                                               select new Visit()
+                                               {
+                                                   Page = g.Key,
 
-                                           Date = g.Max(v => v.Date),
+                                                   Date = g.Max(v => v.Date),
 
-                                           Time = g.Max(v => v.Time),
+                                                   Time = g.Max(v => v.Time),
 
-                                           Method = g.OrderByDescending(v => v.Date).ThenByDescending(v => v.Time).First().Method,
+                                                   Method = g.OrderByDescending(v => v.Date).ThenByDescending(v => v.Time).First().Method,
 
-                                           PageKey = g.OrderByDescending(v => v.Date).ThenByDescending(v => v.Time).First().PageKey
-                                       };
+                                                   PageKey = g.OrderByDescending(v => v.Date).ThenByDescending(v => v.Time).First().PageKey
+                                               };
 
             return View(lastVisitsAttributes);
         }
@@ -38,7 +40,18 @@ namespace WebGallery.Controllers
         [HttpGet()]
         public ViewResult Count()
         {
-            return View();
+            IEnumerable<PageCount> countOfVisits = (
+                from visit in statisticsContext.Visits
+                group visit by visit.Page into grouped
+                orderby grouped.Count() descending
+                select new PageCount
+                {
+                    Count = grouped.Count(),
+
+                    Page = grouped.Key
+                });
+
+            return (View(countOfVisits));
         }
 
 

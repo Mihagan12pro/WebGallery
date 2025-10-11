@@ -1,8 +1,11 @@
 ﻿@using WebGallery.Models.Statistics
+@using WebGallery.Models.Statistics.HelpStructs
 
-@model IEnumerable<Visit>
+@model IEnumerable<PageCount>
 @{
     ViewData["Title"] = "Самые посещаемые страницы";
+
+    int place = 1;
 }
 
 <table>
@@ -11,14 +14,14 @@
         <td>Страница</td>
         <td>Число посещений</td>
     </tr>
-    @* @foreach (Visit visit in Model)
+    @foreach(var visit in Model)
     {
         <tr>
-            <td>@visit.Id</td>
-            <td>@visit.Page?.Path</td>
-            <td>@visit.Method</td>
-            <td>@visit.Date</td>
-            <td>@visit.Time.Hour:@visit.Time.Minute:@visit.Time.Second</td>
+            <td>@place</td>
+            <td>@visit.Page.Path</td>
+            <td>@visit.Count</td>
         </tr>
-    } *@
+
+        place++;
+    }
 </table>

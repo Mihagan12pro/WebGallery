@@ -9,7 +9,7 @@ namespace WebGallery.Models.Statistics
         [Key, Column("page_id")]
         public int Id { get; set; }
 
-        [Required()]
+        [Required(), Column("page_path")]
         public required string? Path { get; set; }
     }
 }
