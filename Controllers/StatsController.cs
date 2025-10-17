@@ -39,7 +39,9 @@ namespace WebGallery.Controllers
 
                                  Method = visit.Method,
 
-                                 Page = maxId.Page
+                                 Page = maxId.Page,
+
+                                 UserAgent = Request.Headers.UserAgent
                              };
             return View(lastVisits.OrderByDescending(v => v.Id));
         }
