@@ -23,5 +23,8 @@ namespace WebGallery.Models.Statistics
 
         [Column("visited_method")]
         public required string? Method { get; set; }
+
+        [Column("user_agent")]
+        public string? UserAgent { get; set; }
     }
 }

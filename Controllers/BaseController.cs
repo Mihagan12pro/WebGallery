@@ -39,7 +39,9 @@ namespace WebGallery.Controllers
 
                 Time = new TimeOnly(DateTime.Now.Hour, DateTime.Now.Minute, DateTime.Now.Second),
 
-                Method = context.HttpContext.Request.Method
+                Method = context.HttpContext.Request.Method,
+
+                UserAgent = context.HttpContext.Request.Headers.UserAgent
             };
 
             statisticsContext.Visits.Add(visit);
