@@ -48,13 +48,6 @@ namespace WebGallery.Controllers
         }
 
 
-        [NonAction()]
-        public static Visit LastVisitOnPage(string path)
-        {
-            throw new NotImplementedException();
-        }
-
-
         public BaseController(StatisticsContext statisticsContext)
         {
             this.statisticsContext = statisticsContext;

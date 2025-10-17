@@ -10,7 +10,7 @@ namespace WebGallery.Models.Statistics
         public int Id { get; set; }
 
         [Column("visited_page_id")]
-        public required int? PageKey { get; set; }
+        public int? PageKey { get; set; }
       
         [ForeignKey(nameof(PageKey))]
         public Page? Page { get; set; }

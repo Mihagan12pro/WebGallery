@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using System.Collections;
 using WebGallery.Models.Statistics;
 using WebGallery.Models.Statistics.HelpStructs;
 using WebGallery.Repositories.Contexts;
@@ -11,29 +10,38 @@ namespace WebGallery.Controllers
         [HttpGet()]
         public ViewResult Visits()
         {
-            return View(statisticsContext.Visits);
+            var visits = statisticsContext.Visits;
+
+            return View(visits.OrderByDescending(v => v.Id));
         }
 
 
         [HttpGet()]
-        public ViewResult Last()
+        public ViewResult  Last()
         {
-            var lastVisitsAttributes = from visit in statisticsContext.Visits
-                                           group visit by visit.Page into g
-                                               select new Visit()
-                                               {
-                                                   Page = g.Key,
+            var maxIds = from visit in statisticsContext.Visits
+                         group visit by visit.Page into g
+                         select new
+                         {
+                             Page = g.Key,
 
-                                                   Date = g.Max(v => v.Date),
+                             Id = g.Max(visit => visit.Id)
+                         };
+            var lastVisits = from visit in statisticsContext.Visits
+                             join maxId in maxIds on visit.Id equals maxId.Id
+                             select new Visit()
+                             {
+                                 Id = maxId.Id,
 
-                                                   Time = g.Max(v => v.Time),
+                                 Date = visit.Date,
 
-                                                   Method = g.OrderByDescending(v => v.Date).ThenByDescending(v => v.Time).First().Method,
+                                 Time = visit.Time,
 
-                                                   PageKey = g.OrderByDescending(v => v.Date).ThenByDescending(v => v.Time).First().PageKey
-                                               };
+                                 Method = visit.Method,
 
-            return View(lastVisitsAttributes);
+                                 Page = maxId.Page
+                             };
+            return View(lastVisits.OrderByDescending(v => v.Id));
         }
 
 
