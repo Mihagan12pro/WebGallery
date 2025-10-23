@@ -1,32 +1,27 @@
-﻿@using WebGallery.Models.Statistics;
-
-@model IEnumerable<Visit>
+﻿@model IEnumerable<Visit>
 @{
     ViewData["Title"] = "Посещения страниц";
 
     int place = 1;
 }
-
-<table>
+<tr>
+    <td>№</td>
+    <td>Страница</td>
+    <td>Метод</td>
+    <td>User-agent</td>
+    <td>Дата</td>
+    <td>Время</td>
+</tr>
+@foreach (Visit visit in Model)
+{
     <tr>
-        <td>№</td>
-        <td>Страница</td>
-        <td>Метод</td>
-        <td>User-agent</td>
-        <td>Дата</td>
-        <td>Время</td>
+        <td>@place</td>
+        <td>@visit.Page?.Path</td>
+        <td>@visit.Method</td>
+        <td>@visit.UserAgent</td>
+        <td>@visit.Date</td>
+        <td>@visit.Time.Hour:@visit.Time.Minute:@visit.Time.Second</td>
     </tr>
-    @foreach (Visit visit in Model)
-    {
-        <tr>
-            <td>@place</td>
-            <td>@visit.Page?.Path</td>
-            <td>@visit.UserAgent</td>
-            <td>@visit.Method</td>
-            <td>@visit.Date</td>
-            <td>@visit.Time.Hour:@visit.Time.Minute:@visit.Time.Second</td>
-        </tr>
 
-        place++;
-    }
-</table>
+    place++;
+}
