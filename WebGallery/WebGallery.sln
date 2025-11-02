@@ -12,6 +12,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{3BFFB86A-0234-47F5-8CC3-A4B321C42B38}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebGallery.Domain", "WebGallery.Domain\WebGallery.Domain.csproj", "{740B89D0-84EE-4116-A6D7-F6FD5DA3A55F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -19,5 +21,14 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{740B89D0-84EE-4116-A6D7-F6FD5DA3A55F} = {3BFFB86A-0234-47F5-8CC3-A4B321C42B38}
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{740B89D0-84EE-4116-A6D7-F6FD5DA3A55F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{740B89D0-84EE-4116-A6D7-F6FD5DA3A55F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{740B89D0-84EE-4116-A6D7-F6FD5DA3A55F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{740B89D0-84EE-4116-A6D7-F6FD5DA3A55F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
