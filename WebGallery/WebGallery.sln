@@ -8,15 +8,16 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		..\.gitattributes = ..\.gitattributes
 		..\.gitignore = ..\.gitignore
 		..\WebGallery.drawio = ..\WebGallery.drawio
+		Directory.Build.props = Directory.Build.props
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{3BFFB86A-0234-47F5-8CC3-A4B321C42B38}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebGallery.Domain", "WebGallery.Domain\WebGallery.Domain.csproj", "{740B89D0-84EE-4116-A6D7-F6FD5DA3A55F}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebGallery.Web", "src\WebGallery.Web\WebGallery.Web.csproj", "{C5F40E05-DE4C-4316-8C6B-CDF0D7BCBEA1}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebGallery.Presenters", "src\WebGallery.Presenters\WebGallery.Presenters.csproj", "{845DC9D9-642F-49A0-A633-9B170F59EE24}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebGallery.Domain", "src\WebGallery.Domain\WebGallery.Domain.csproj", "{B74197B1-3DAF-4CB5-8DC9-A319D92E4C5E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,15 +28,11 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{740B89D0-84EE-4116-A6D7-F6FD5DA3A55F} = {3BFFB86A-0234-47F5-8CC3-A4B321C42B38}
 		{C5F40E05-DE4C-4316-8C6B-CDF0D7BCBEA1} = {3BFFB86A-0234-47F5-8CC3-A4B321C42B38}
 		{845DC9D9-642F-49A0-A633-9B170F59EE24} = {3BFFB86A-0234-47F5-8CC3-A4B321C42B38}
+		{B74197B1-3DAF-4CB5-8DC9-A319D92E4C5E} = {3BFFB86A-0234-47F5-8CC3-A4B321C42B38}
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{740B89D0-84EE-4116-A6D7-F6FD5DA3A55F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{740B89D0-84EE-4116-A6D7-F6FD5DA3A55F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{740B89D0-84EE-4116-A6D7-F6FD5DA3A55F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{740B89D0-84EE-4116-A6D7-F6FD5DA3A55F}.Release|Any CPU.Build.0 = Release|Any CPU
 		{C5F40E05-DE4C-4316-8C6B-CDF0D7BCBEA1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{C5F40E05-DE4C-4316-8C6B-CDF0D7BCBEA1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C5F40E05-DE4C-4316-8C6B-CDF0D7BCBEA1}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -44,5 +41,9 @@ Global
 		{845DC9D9-642F-49A0-A633-9B170F59EE24}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{845DC9D9-642F-49A0-A633-9B170F59EE24}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{845DC9D9-642F-49A0-A633-9B170F59EE24}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B74197B1-3DAF-4CB5-8DC9-A319D92E4C5E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B74197B1-3DAF-4CB5-8DC9-A319D92E4C5E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B74197B1-3DAF-4CB5-8DC9-A319D92E4C5E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B74197B1-3DAF-4CB5-8DC9-A319D92E4C5E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
