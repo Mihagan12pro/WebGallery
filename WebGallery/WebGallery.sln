@@ -16,6 +16,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebGallery.Domain", "WebGal
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebGallery.Web", "src\WebGallery.Web\WebGallery.Web.csproj", "{C5F40E05-DE4C-4316-8C6B-CDF0D7BCBEA1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebGallery.Presenters", "src\WebGallery.Presenters\WebGallery.Presenters.csproj", "{845DC9D9-642F-49A0-A633-9B170F59EE24}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{740B89D0-84EE-4116-A6D7-F6FD5DA3A55F} = {3BFFB86A-0234-47F5-8CC3-A4B321C42B38}
 		{C5F40E05-DE4C-4316-8C6B-CDF0D7BCBEA1} = {3BFFB86A-0234-47F5-8CC3-A4B321C42B38}
+		{845DC9D9-642F-49A0-A633-9B170F59EE24} = {3BFFB86A-0234-47F5-8CC3-A4B321C42B38}
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{740B89D0-84EE-4116-A6D7-F6FD5DA3A55F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -37,5 +40,9 @@ Global
 		{C5F40E05-DE4C-4316-8C6B-CDF0D7BCBEA1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C5F40E05-DE4C-4316-8C6B-CDF0D7BCBEA1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C5F40E05-DE4C-4316-8C6B-CDF0D7BCBEA1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{845DC9D9-642F-49A0-A633-9B170F59EE24}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{845DC9D9-642F-49A0-A633-9B170F59EE24}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{845DC9D9-642F-49A0-A633-9B170F59EE24}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{845DC9D9-642F-49A0-A633-9B170F59EE24}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
