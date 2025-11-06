@@ -14,6 +14,10 @@ public class Comment
 
     required public string Body { get; set; }
 
+    public int Likes { get; set; }
+
+    public int DisLines { get; set; }
+
     public Comment()
     {
         DateTime = DateTime.Now;
