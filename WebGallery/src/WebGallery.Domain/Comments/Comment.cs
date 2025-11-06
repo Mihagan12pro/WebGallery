@@ -12,6 +12,8 @@ public class Comment
 
     public DateTime DateTime { get; init; }
 
+    required public string Body { get; set; }
+
     public Comment()
     {
         DateTime = DateTime.Now;

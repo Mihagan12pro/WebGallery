@@ -8,9 +8,9 @@ namespace WebGallery.Web
     public class CommentController : ControllerBase
     {
         [HttpGet]
-        public void Comments()
+        public async Task<IActionResult> Comments([FromBody] string body)
         {
-
+            return Ok(body);
         }
     }
 }
