@@ -4,6 +4,7 @@
         <PackageReference Include="Swashbuckle.AspNetCore.SwaggerUI" Version="9.0.6" />
     </ItemGroup>
     <ItemGroup>
+      <ProjectReference Include="..\WebGallery.Application\WebGallery.Application.csproj" />
       <ProjectReference Include="..\WebGallery.Presenters\WebGallery.Presenters.csproj" />
     </ItemGroup>
 </Project>
