@@ -1,14 +1,14 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.14.36408.4 d17.14
+VisualStudioVersion = 17.14.36408.4
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{8EC462FD-D22E-90A8-E5CE-7E832BA40C5D}"
 	ProjectSection(SolutionItems) = preProject
 		..\.gitattributes = ..\.gitattributes
 		..\.gitignore = ..\.gitignore
-		..\WebGallery.drawio = ..\WebGallery.drawio
 		Directory.Build.props = Directory.Build.props
+		..\WebGallery.drawio = ..\WebGallery.drawio
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{3BFFB86A-0234-47F5-8CC3-A4B321C42B38}"
@@ -24,14 +24,6 @@ Global
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
-	GlobalSection(SolutionProperties) = preSolution
-		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(NestedProjects) = preSolution
-		{C5F40E05-DE4C-4316-8C6B-CDF0D7BCBEA1} = {3BFFB86A-0234-47F5-8CC3-A4B321C42B38}
-		{845DC9D9-642F-49A0-A633-9B170F59EE24} = {3BFFB86A-0234-47F5-8CC3-A4B321C42B38}
-		{B74197B1-3DAF-4CB5-8DC9-A319D92E4C5E} = {3BFFB86A-0234-47F5-8CC3-A4B321C42B38}
-	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{C5F40E05-DE4C-4316-8C6B-CDF0D7BCBEA1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{C5F40E05-DE4C-4316-8C6B-CDF0D7BCBEA1}.Debug|Any CPU.Build.0 = Debug|Any CPU
@@ -45,5 +37,16 @@ Global
 		{B74197B1-3DAF-4CB5-8DC9-A319D92E4C5E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B74197B1-3DAF-4CB5-8DC9-A319D92E4C5E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B74197B1-3DAF-4CB5-8DC9-A319D92E4C5E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{C5F40E05-DE4C-4316-8C6B-CDF0D7BCBEA1} = {3BFFB86A-0234-47F5-8CC3-A4B321C42B38}
+		{845DC9D9-642F-49A0-A633-9B170F59EE24} = {3BFFB86A-0234-47F5-8CC3-A4B321C42B38}
+		{B74197B1-3DAF-4CB5-8DC9-A319D92E4C5E} = {3BFFB86A-0234-47F5-8CC3-A4B321C42B38}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {65AB66AB-4A04-4132-A1ED-9C23A3A7C933}
 	EndGlobalSection
 EndGlobal
