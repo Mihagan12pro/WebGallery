@@ -1,4 +1,6 @@
-﻿namespace WebGallery.Domain.Comments;
+﻿using System.Runtime.InteropServices.JavaScript;
+
+namespace WebGallery.Domain.Comments;
 
 public class Comment
 {
@@ -6,20 +8,32 @@ public class Comment
 
     public List<Comment> Children { get; private set; } = [];
 
-    required public Guid UserId { get; set; }
+    public Guid UserId { get; set; }
 
-    required public Guid EntityId { get; set; }
+    public Guid EntityId { get; set; }
 
     public DateTime DateTime { get; init; }
 
-    required public string Body { get; set; }
+    public string Body { get; set; }
 
     public int Likes { get; set; }
 
     public int DisLines { get; set; }
 
-    public Comment()
+    public Comment(
+        Guid id,
+        Guid userId,
+        Guid entityId,
+        string body,
+        int likes = 0,
+        int disLikes = 0)
     {
         DateTime = DateTime.Now;
+        Id = id;
+        UserId = userId;
+        EntityId = entityId;
+        Body = body;
+        Likes = likes;
+        DisLines = disLikes;
     }
 }

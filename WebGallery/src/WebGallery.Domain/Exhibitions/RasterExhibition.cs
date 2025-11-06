@@ -1,18 +1,11 @@
-﻿namespace WebGallery.Domain.Exhibitions;
+﻿using WebGallery.Domain.Exhibitions.Enums;
+
+namespace WebGallery.Domain.Exhibitions;
 
 public class RasterExhibition : Exhibition
 {
-    public RasterExhibition(Raster image)
+    public RasterExhibition(RasterExtension image)
     {
         MimeType = "image/"+image.ToString();
     }
-}
-
-public enum Raster
-{
-    Png,
-    
-    Gif,  
-    
-    Jpeg
 }

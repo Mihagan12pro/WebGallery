@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WebGallery.Contracts.Comments
-{
-    public record CreateCommentDto(Guid UserId, Guid EntityId, string Body);
-}
+namespace WebGallery.Contracts.Comments;
+
+public record CreateCommentDto(Guid UserId, Guid EntityId, string Body);
+
