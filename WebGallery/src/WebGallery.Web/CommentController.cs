@@ -5,7 +5,7 @@ namespace WebGallery.Web
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class CommentsController : ControllerBase
+    public class CommentController : ControllerBase
     {
         [HttpGet]
         public void Comments()
