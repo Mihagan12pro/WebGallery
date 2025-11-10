@@ -1,9 +1,12 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
     <ItemGroup>
+        <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="12.1.0" />
         <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="9.0.8" />
+        <PackageReference Include="Microsoft.Extensions.Logging" Version="9.0.10" />
         <PackageReference Include="Swashbuckle.AspNetCore.SwaggerUI" Version="9.0.6" />
     </ItemGroup>
     <ItemGroup>
+      <ProjectReference Include="..\WebGallery.Application\WebGallery.Application.csproj" />
       <ProjectReference Include="..\WebGallery.Presenters\WebGallery.Presenters.csproj" />
     </ItemGroup>
 </Project>
