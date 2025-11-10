@@ -1,8 +1,11 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <ItemGroup>
+    <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="12.1.0" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="2.3.0" />
+    <PackageReference Include="Microsoft.Extensions.Logging" Version="9.0.10" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\WebGallery.Application\WebGallery.Application.csproj" />
     <ProjectReference Include="..\WebGallery.Contracts\WebGallery.Contracts.csproj" />
   </ItemGroup>
 </Project>

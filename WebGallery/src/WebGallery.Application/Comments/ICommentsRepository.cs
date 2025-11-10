@@ -11,4 +11,6 @@ public interface ICommentsRepository
     Task<Comment> GetByIdAsync(Guid id, CancellationToken cancellationToken);
     
     Task<Guid> DeleteAsync(Comment comment, CancellationToken cancellationToken);
+    
+    Task<int> GetUserReputationAsync(Guid userId, CancellationToken cancellationToken);
 }

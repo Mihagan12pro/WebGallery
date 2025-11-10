@@ -1,27 +1,50 @@
 ﻿using WebGallery.Contracts.Comments;
+using FluentValidation;
 using WebGallery.Domain.Comments;
+using Microsoft.Extensions.Logging;
 
 namespace WebGallery.Application.Comments;
 
-public class CommentsService
+public class CommentsService : ICommentsService
 {
-    public async Task Create(
-        CreateCommentDto commentDto, 
+    private readonly ICommentsRepository _commentsRepository;
+    private readonly ILogger<CommentsService> _logger;
+    private readonly IValidator<CreateCommentDto> _creationValidator;
+    
+    public CommentsService(
+        ICommentsRepository commentsRepository,
+        IValidator<CreateCommentDto>creationValidator,
+        ILogger<CommentsService> logger)
+    {
+        _commentsRepository = commentsRepository;
+        _logger = logger;
+        _creationValidator = creationValidator;
+    }
+    
+    
+    public async Task<Guid> Create(
+        CreateCommentDto commentDto,
         CancellationToken cancellationToken)
     {
-        //Проверка валидности
+        //Валидация входный данных
+        var validationResult = await _creationValidator.ValidateAsync(commentDto, cancellationToken);
+        if (!validationResult.IsValid)
+        {
+            throw new ValidationException(validationResult.Errors);
+        }
+        
+        Guid commentId = Guid.NewGuid();
+        
+        if (await _commentsRepository.GetUserReputationAsync(commentDto.UserId, cancellationToken) < 0)
+            throw new Exception("User reputation is too low!");
 
-        Guid id = Guid.NewGuid();
+        var comment = new Comment(commentId, commentDto.UserId, commentDto.EntityId, commentDto.Body);
 
-        var comment = new Comment(id, commentDto.UserId, commentDto.EntityId, commentDto.Body);
+        await _commentsRepository.AddAsync(comment, cancellationToken);
 
-        //Создание сущности Comment - сделано
-
-
-
-        //Сохранение сущности Comment в базе данных
-
-        //Логирование об успешном и неуспешном логировании
+        _logger.LogInformation($"Comment created with id {commentId}", commentId);
+        
+        return commentId; 
     }
 
     

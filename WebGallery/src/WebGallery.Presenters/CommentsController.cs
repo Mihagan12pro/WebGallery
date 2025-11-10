@@ -1,18 +1,21 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using WebGallery.Application.Comments;
 using WebGallery.Contracts.Comments;
 
 namespace WebGallery.Presenters;
 
-[Route("api/[controller]")]
 [ApiController]
+[Route("api/[controller]")]
 public class CommentsController : ControllerBase
 {
+    private readonly ICommentsService _commentsService;
+    
     [HttpPost]
     public async Task<IActionResult> Create(
-        [FromBody] CreateCommentDto request, 
+        [FromBody] CreateCommentDto request,
         CancellationToken cancellationToken)
     {
-        return Ok("Create Comment");
+        return Ok(await _commentsService.Create(request, cancellationToken));
     }
 
 
@@ -60,6 +63,12 @@ public class CommentsController : ControllerBase
         CancellationToken cancellationToken)
     {
         return Ok("Delete comment");
+    }
+
+
+    public CommentsController(ICommentsService commentsService)
+    {
+        _commentsService = commentsService;
     }
 }
 

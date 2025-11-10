@@ -11,4 +11,9 @@
       <ProjectReference Include="..\WebGallery.Domain\WebGallery.Domain.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="12.1.0" />
+      <PackageReference Include="Microsoft.Extensions.Logging" Version="9.0.10" />
+    </ItemGroup>
+
 </Project>
