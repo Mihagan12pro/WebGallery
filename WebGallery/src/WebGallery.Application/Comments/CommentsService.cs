@@ -1,5 +1,6 @@
 ﻿using FluentValidation;
 using Microsoft.Extensions.Logging;
+using Shared;
 using WebGallery.Application.Comments.Fails;
 using WebGallery.Application.Comments.Fails.Exceptions;
 using WebGallery.Contracts.Comments;
@@ -30,12 +31,14 @@ public class CommentsService : ICommentsService
         var validationResult = await _creationValidator.ValidateAsync(commentDto, cancellationToken);
         if (!validationResult.IsValid)
         {
-            //throw new CommentValidationException(
-            //    validationResult.
-            //        Errors.
-            //        Select(e => e.ErrorMessage)
-            //);
-            //throw new ValidationException(validationResult.Errors);
+            var errors = validationResult.Errors.
+                Select(e => Error.Validation(
+                        e.ErrorCode,
+                        e.ErrorMessage,
+                        e.PropertyName)
+                );
+
+            throw new CommentValidationException(errors);
         }
 
         Guid commentId = Guid.NewGuid();

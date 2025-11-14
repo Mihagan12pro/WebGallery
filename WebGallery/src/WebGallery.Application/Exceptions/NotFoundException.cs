@@ -9,10 +9,5 @@ namespace WebGallery.Application.Exceptions
             : base(JsonSerializer.Serialize(error))
         {
         }
-
-        //protected NotFoundException(IEnumerable<string> errors)
-        //    : base(string.Join(',', errors))
-        //{
-        //}
     }
 }
