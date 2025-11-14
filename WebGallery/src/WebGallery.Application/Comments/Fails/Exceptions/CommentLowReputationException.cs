@@ -1,11 +1,12 @@
 ﻿using Shared;
 using WebGallery.Application.Exceptions;
 
-namespace WebGallery.Application.Comments.Exceptions
+namespace WebGallery.Application.Comments.Fails.Exceptions
 {
     public class CommentLowReputationException : BadRequestException
     {
-        public CommentLowReputationException(IEnumerable<Error> errors) : base(errors)
+        public CommentLowReputationException()
+            : base([Errors.Comments.LowReputation()])
         {
         }
     }

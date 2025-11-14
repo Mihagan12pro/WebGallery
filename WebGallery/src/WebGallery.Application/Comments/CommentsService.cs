@@ -1,7 +1,7 @@
 ﻿using FluentValidation;
 using Microsoft.Extensions.Logging;
-using Shared;
-using WebGallery.Application.Comments.Exceptions;
+using WebGallery.Application.Comments.Fails;
+using WebGallery.Application.Comments.Fails.Exceptions;
 using WebGallery.Contracts.Comments;
 using WebGallery.Domain.Comments;
 
@@ -12,7 +12,7 @@ public class CommentsService : ICommentsService
     private readonly ICommentsRepository _commentsRepository;
     private readonly ILogger<CommentsService> _logger;
     private readonly IValidator<CreateCommentDto> _creationValidator;
-    
+
     public CommentsService(
         ICommentsRepository commentsRepository,
         IValidator<CreateCommentDto>creationValidator,
@@ -42,13 +42,7 @@ public class CommentsService : ICommentsService
 
         if (await _commentsRepository.GetUserReputationAsync(commentDto.UserId, cancellationToken) < 0)
         {
-            //throw new Exception("User reputation is too low!");
-
-            throw new CommentLowReputationException([
-                Error.Failure(
-                    "comment.low.reputation", 
-                    "User reputation is too low!")
-                ]);
+            throw new CommentLowReputationException();
         }
 
         var comment = new Comment(commentId, commentDto.UserId, commentDto.EntityId, commentDto.Body);

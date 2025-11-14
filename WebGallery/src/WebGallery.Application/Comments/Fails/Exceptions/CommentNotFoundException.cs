@@ -1,12 +1,12 @@
 ﻿using Shared;
 using WebGallery.Application.Exceptions;
 
-namespace WebGallery.Application.Comments.Exceptions
+namespace WebGallery.Application.Comments.Fails.Exceptions
 {
     public class CommentNotFoundException : NotFoundException
     {
-        public CommentNotFoundException(IEnumerable<Error> errors)
-            : base(errors)
+        protected CommentNotFoundException(IEnumerable<Error> error)
+            : base(error)
         {
         }
     }
