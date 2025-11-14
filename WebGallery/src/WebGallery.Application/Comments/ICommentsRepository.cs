@@ -8,7 +8,7 @@ public interface ICommentsRepository
     
     Task<Guid> UpdateAsync(Comment comment, CancellationToken cancellationToken);
     
-    Task<Comment> GetByIdAsync(Guid id, CancellationToken cancellationToken);
+    Task<Comment?> GetByIdAsync(Guid id, CancellationToken cancellationToken);
     
     Task<Guid> DeleteAsync(Comment comment, CancellationToken cancellationToken);
     
