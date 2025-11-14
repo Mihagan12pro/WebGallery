@@ -1,7 +1,9 @@
-﻿using WebGallery.Contracts.Comments;
-using FluentValidation;
-using WebGallery.Domain.Comments;
+﻿using FluentValidation;
 using Microsoft.Extensions.Logging;
+using Shared;
+using WebGallery.Application.Comments.Exceptions;
+using WebGallery.Contracts.Comments;
+using WebGallery.Domain.Comments;
 
 namespace WebGallery.Application.Comments;
 
@@ -20,31 +22,42 @@ public class CommentsService : ICommentsService
         _logger = logger;
         _creationValidator = creationValidator;
     }
-    
-    
+
     public async Task<Guid> Create(
         CreateCommentDto commentDto,
         CancellationToken cancellationToken)
     {
-        //Валидация входный данных
         var validationResult = await _creationValidator.ValidateAsync(commentDto, cancellationToken);
         if (!validationResult.IsValid)
         {
-            throw new ValidationException(validationResult.Errors);
+            //throw new CommentValidationException(
+            //    validationResult.
+            //        Errors.
+            //        Select(e => e.ErrorMessage)
+            //);
+            //throw new ValidationException(validationResult.Errors);
         }
-        
+
         Guid commentId = Guid.NewGuid();
-        
+
         if (await _commentsRepository.GetUserReputationAsync(commentDto.UserId, cancellationToken) < 0)
-            throw new Exception("User reputation is too low!");
+        {
+            //throw new Exception("User reputation is too low!");
+
+            throw new CommentLowReputationException([
+                Error.Failure(
+                    "comment.low.reputation", 
+                    "User reputation is too low!")
+                ]);
+        }
 
         var comment = new Comment(commentId, commentDto.UserId, commentDto.EntityId, commentDto.Body);
 
         await _commentsRepository.AddAsync(comment, cancellationToken);
 
         _logger.LogInformation($"Comment created with id {commentId}", commentId);
-        
-        return commentId; 
+
+        return commentId;
     }
 
     

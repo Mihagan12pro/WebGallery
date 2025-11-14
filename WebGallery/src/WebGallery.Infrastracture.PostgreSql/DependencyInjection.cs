@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using WebGallery.Application;
 using WebGallery.Application.Comments;
+using WebGallery.Infrastracture.PostgreSql.Comments;
 using WebGallery.Infrastracture.PostgreSql.Repositories;
 
 namespace WebGallery.Infrastracture.PostgreSql;

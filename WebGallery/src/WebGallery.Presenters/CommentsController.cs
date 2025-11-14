@@ -9,7 +9,7 @@ namespace WebGallery.Presenters;
 public class CommentsController : ControllerBase
 {
     private readonly ICommentsService _commentsService;
-    
+
     [HttpPost]
     public async Task<IActionResult> Create(
         [FromBody] CreateCommentDto request,
@@ -37,7 +37,7 @@ public class CommentsController : ControllerBase
     }
 
 
-    [HttpPatch("{commentId:guid}")]
+    [HttpPut("{commentId:guid}")]
     public async Task<IActionResult> Update(
         [FromRoute] Guid commentId,
         UpdateCommentDto request,

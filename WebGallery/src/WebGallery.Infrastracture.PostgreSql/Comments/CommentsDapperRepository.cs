@@ -10,14 +10,14 @@ namespace WebGallery.Infrastracture.PostgreSql.Repositories;
 public class CommentsDapperRepository : ICommentsRepository
 {
     private readonly ISqlConnectionFactory _connectionFactory;
-    
+
     public async Task<Guid> AddAsync(Comment comment, CancellationToken cancellationToken)
     {
         const string sql = """
                            INSERT INTO comments (body, user_id, entity_id) 
                            VALUES (@body, @user_id, @entity_id)
                            """;
-        
+
         using var sqlConnection = _connectionFactory.CreateConnection();
 
         await sqlConnection.ExecuteAsync(sql, new
