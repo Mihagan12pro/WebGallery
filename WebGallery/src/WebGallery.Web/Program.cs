@@ -7,8 +7,7 @@ builder.Services.AddProgramDependencies();
 
 var app = builder.Build();
 
-//app.UseExceptionMiddleware();
-//app.UseExceptionMiddleware();
+app.UseExceptionMiddleware();
 
 if (app.Environment.IsDevelopment())
 {

@@ -1,4 +1,6 @@
-﻿namespace Shared
+﻿using System.Text.Json.Serialization;
+
+namespace Shared
 {
     public record Error
     {
@@ -6,6 +8,7 @@
 
         public string Message { get; }
 
+        [JsonConverter(typeof(JsonStringEnumConverter))]
         public ErrorType Type { get; }
 
         public string? InvalidField { get; }

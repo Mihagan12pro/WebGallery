@@ -7,9 +7,9 @@ namespace WebGallery.Web.Middlewares
     public class ExceptionMiddleware
     {
         private readonly RequestDelegate _next;
-        private ILogger _logger;
+        private readonly ILogger<ExceptionMiddleware> _logger;
 
-        public async Task InvoleAsync(HttpContext httpContext)
+        public async Task InvokeAsync(HttpContext httpContext)
         {
             try
             {
@@ -45,7 +45,7 @@ namespace WebGallery.Web.Middlewares
             await context.Response.WriteAsJsonAsync(errors);
         }
 
-        public ExceptionMiddleware(RequestDelegate next, ILogger logger)
+        public ExceptionMiddleware(RequestDelegate next, ILogger<ExceptionMiddleware> logger)
         {
             _next = next;
             _logger = logger;
