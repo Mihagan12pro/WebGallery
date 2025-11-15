@@ -3,6 +3,7 @@ using Microsoft.Extensions.Logging;
 using Shared;
 using WebGallery.Application.Comments.Fails;
 using WebGallery.Application.Comments.Fails.Exceptions;
+using WebGallery.Application.Extensions;
 using WebGallery.Contracts.Comments;
 using WebGallery.Domain.Comments;
 
@@ -31,14 +32,7 @@ public class CommentsService : ICommentsService
         var validationResult = await _creationValidator.ValidateAsync(commentDto, cancellationToken);
         if (!validationResult.IsValid)
         {
-            var errors = validationResult.Errors.
-                Select(e => Error.Validation(
-                        e.ErrorCode,
-                        e.ErrorMessage,
-                        e.PropertyName)
-                );
-
-            throw new CommentValidationException(errors);
+            throw new CommentValidationException(validationResult.ToErrors());
         }
 
         Guid commentId = Guid.NewGuid();

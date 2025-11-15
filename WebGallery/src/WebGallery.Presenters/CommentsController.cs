@@ -27,7 +27,6 @@ public class CommentsController : ControllerBase
         return Ok("Get all comments");
     }
 
-
     [HttpGet("{commentId:guid}")]
     public async Task<IActionResult> GetById(
         [FromRoute] Guid commentId,
@@ -35,7 +34,6 @@ public class CommentsController : ControllerBase
     {
         return Ok("Get comment by id");
     }
-
 
     [HttpPut("{commentId:guid}")]
     public async Task<IActionResult> Update(
@@ -56,7 +54,6 @@ public class CommentsController : ControllerBase
         return Ok("Rate comment");
     }
 
-
     [HttpDelete("{commentId:guid}")]
     public async Task<IActionResult> Delete(
         [FromRoute] Guid commentId,
@@ -65,10 +62,8 @@ public class CommentsController : ControllerBase
         return Ok("Delete comment");
     }
 
-
     public CommentsController(ICommentsService commentsService)
     {
         _commentsService = commentsService;
     }
 }
-

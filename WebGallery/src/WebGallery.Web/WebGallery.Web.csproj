@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
     <ItemGroup>
         <PackageReference Include="Dapper" Version="2.1.66" />
         <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="12.1.0" />

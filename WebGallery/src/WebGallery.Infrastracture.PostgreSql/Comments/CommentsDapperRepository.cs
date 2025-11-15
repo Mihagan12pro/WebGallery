@@ -1,8 +1,8 @@
 ﻿using Dapper;
 using Microsoft.Extensions.Configuration;
 using Npgsql;
-using WebGallery.Application;
 using WebGallery.Application.Comments;
+using WebGallery.Application.Database;
 using WebGallery.Domain.Comments;
 
 namespace WebGallery.Infrastracture.PostgreSql.Repositories;

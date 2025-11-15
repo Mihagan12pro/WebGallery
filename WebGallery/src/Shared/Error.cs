@@ -33,9 +33,24 @@
 
     public enum ErrorType
     {
+        /// <summary>
+        /// Validation error
+        /// </summary>
         VALIDATION,
+
+        /// <summary>
+        /// Not found error
+        /// </summary>
         NOT_FOUND,
+
+        /// <summary>
+        /// Server error
+        /// </summary>
         FAILURE,
-        CONFLICT
+
+        /// <summary>
+        /// Conflict error
+        /// </summary>
+        CONFLICT,
     }
 }
