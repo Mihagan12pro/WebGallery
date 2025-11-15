@@ -7,11 +7,11 @@ namespace WebGallery.Infrastracture.PostgreSql.Comments;
 public class CommentsEFCoreRepository : ICommentsRepository
 {
     private readonly CommentsDbContext _commentsContext;
-    
+
     public async Task<Guid> AddAsync(Comment comment, CancellationToken cancellationToken)
     {
         await _commentsContext.AddAsync(comment, cancellationToken);
-        
+
         await _commentsContext.SaveChangesAsync(cancellationToken);
 
         return comment.Id;
@@ -19,7 +19,7 @@ public class CommentsEFCoreRepository : ICommentsRepository
 
     public async Task<Guid> UpdateAsync(Comment comment, CancellationToken cancellationToken)
     {
-        throw new NotImplementedException(); 
+        throw new NotImplementedException();
     }
 
     public async Task<Comment?> GetByIdAsync(Guid id, CancellationToken cancellationToken)
@@ -27,7 +27,7 @@ public class CommentsEFCoreRepository : ICommentsRepository
         var comment = await _commentsContext.Comments.
             Include(c => c.UserId).
                 FirstOrDefaultAsync(c => c.Id == id, cancellationToken);
-        
+
         return comment;
     }
 
@@ -41,8 +41,7 @@ public class CommentsEFCoreRepository : ICommentsRepository
         throw new NotImplementedException();
     }
 
-    
-    public CommentsEFCoreRepository(CommentsDbContext  commentsContext)
+    public CommentsEFCoreRepository(CommentsDbContext commentsContext)
     {
         _commentsContext = commentsContext;
     }

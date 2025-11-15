@@ -47,7 +47,7 @@ public class CommentsDapperRepository : ICommentsRepository
 
     public async Task<int> GetUserReputationAsync(Guid userId, CancellationToken cancellationToken)
     {
-        throw new NotImplementedException();
+        return 1;
     }
 
 

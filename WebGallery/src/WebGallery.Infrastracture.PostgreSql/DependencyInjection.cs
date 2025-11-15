@@ -10,8 +10,21 @@ public static class DependencyInjection
 {
     public static IServiceCollection AddPostgresInfrastructure(this IServiceCollection services)
     {
-        services.AddSingleton<ISqlConnectionFactory, SqlConnectionFactory>();
-        services.AddScoped<ICommentsRepository, CommentsDapperRepository>();
+        /// <summary>
+        /// For Dapper
+        /// </summary>
+
+        // services.AddSingleton<ISqlConnectionFactory, SqlConnectionFactory>();
+
+        // services.AddScoped<ICommentsRepository, CommentsDapperRepository>();
+
+        /// <summary>
+        /// For EF Core
+        /// </summary>
+
+        services.AddDbContext<CommentsDbContext>();
+
+        services.AddScoped<ICommentsRepository, CommentsEFCoreRepository>();
 
         return services;
     }
