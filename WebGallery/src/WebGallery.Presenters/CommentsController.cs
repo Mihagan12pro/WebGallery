@@ -18,7 +18,6 @@ public class CommentsController : ControllerBase
         return Ok(await _commentsService.Create(request, cancellationToken));
     }
 
-
     [HttpGet]
     public async Task<IActionResult> Get(
         [FromQuery] GetCommentsByExhibitionDto request,
@@ -44,10 +43,9 @@ public class CommentsController : ControllerBase
         return Ok("Update comment");
     }
 
-
     [HttpPatch("{commentId:guid}/rate")]
-    public async Task<IActionResult>  RateComment(
-        [FromRoute] Guid commentId, 
+    public async Task<IActionResult> RateComment(
+        [FromRoute] Guid commentId,
         RateCommentDto request,
         CancellationToken cancellationToken)
     {

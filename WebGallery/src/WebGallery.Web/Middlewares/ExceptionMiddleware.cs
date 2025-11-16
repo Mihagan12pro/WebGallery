@@ -27,12 +27,13 @@ namespace WebGallery.Web.Middlewares
 
             (int code, IEnumerable <Error>? errors) = exception switch
             {
-                BadHttpRequestException => (
-                    StatusCodes.Status500InternalServerError,
+                BadRequestException => (
+                    StatusCodes.Status400BadRequest,
                     JsonSerializer.Deserialize<IEnumerable<Error>>(exception.Message)),
 
                 NotFoundException => (
                     StatusCodes.Status404NotFound,
+
                     JsonSerializer.Deserialize<IEnumerable<Error>>(exception.Message)
                 ),
 

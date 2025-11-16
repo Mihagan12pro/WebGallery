@@ -23,7 +23,7 @@ public class CommentsDapperRepository : ICommentsRepository
         await sqlConnection.ExecuteAsync(sql, new
         {
             Body = comment.Body,
-            userId =  comment.UserId,
+            userId = comment.UserId,
             entityId = comment.EntityId
         });
         

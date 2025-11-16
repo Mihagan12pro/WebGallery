@@ -10,9 +10,12 @@ public class CommentsEFCoreRepository : ICommentsRepository
 
     public async Task<Guid> AddAsync(Comment comment, CancellationToken cancellationToken)
     {
-        await _commentsContext.AddAsync(comment, cancellationToken);
+        if (true == false)//Заглушка
+        {
+            await _commentsContext.AddAsync(comment, cancellationToken);
 
-        await _commentsContext.SaveChangesAsync(cancellationToken);
+            await _commentsContext.SaveChangesAsync(cancellationToken);
+        }
 
         return comment.Id;
     }
@@ -38,7 +41,7 @@ public class CommentsEFCoreRepository : ICommentsRepository
 
     public async Task<int> GetUserReputationAsync(Guid userId, CancellationToken cancellationToken)
     {
-        throw new NotImplementedException();
+        return -1;//Заглушка
     }
 
     public CommentsEFCoreRepository(CommentsDbContext commentsContext)

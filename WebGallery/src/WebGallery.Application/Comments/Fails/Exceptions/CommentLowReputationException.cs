@@ -1,5 +1,4 @@
-﻿using Shared;
-using WebGallery.Application.Exceptions;
+﻿using WebGallery.Application.Exceptions;
 
 namespace WebGallery.Application.Comments.Fails.Exceptions
 {
