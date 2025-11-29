@@ -22,5 +22,11 @@ namespace Shared.Errors
         {
             _errors = [.. errors];
         }
+
+        public static implicit operator ErrorsCollection(Error[] errors)
+            => new(errors);
+
+        public static implicit operator ErrorsCollection(Error error)
+            => new([error]);
     }
 }
