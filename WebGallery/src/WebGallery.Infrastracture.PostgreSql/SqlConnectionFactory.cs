@@ -1,7 +1,7 @@
 ﻿using System.Data;
 using Microsoft.Extensions.Configuration;
 using Npgsql;
-using WebGallery.Application;
+using WebGallery.Application.Database;
 
 namespace WebGallery.Infrastracture.PostgreSql;
 

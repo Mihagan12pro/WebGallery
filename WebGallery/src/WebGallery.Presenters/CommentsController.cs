@@ -9,7 +9,7 @@ namespace WebGallery.Presenters;
 public class CommentsController : ControllerBase
 {
     private readonly ICommentsService _commentsService;
-    
+
     [HttpPost]
     public async Task<IActionResult> Create(
         [FromBody] CreateCommentDto request,
@@ -17,7 +17,6 @@ public class CommentsController : ControllerBase
     {
         return Ok(await _commentsService.Create(request, cancellationToken));
     }
-
 
     [HttpGet]
     public async Task<IActionResult> Get(
@@ -27,7 +26,6 @@ public class CommentsController : ControllerBase
         return Ok("Get all comments");
     }
 
-
     [HttpGet("{commentId:guid}")]
     public async Task<IActionResult> GetById(
         [FromRoute] Guid commentId,
@@ -36,8 +34,7 @@ public class CommentsController : ControllerBase
         return Ok("Get comment by id");
     }
 
-
-    [HttpPatch("{commentId:guid}")]
+    [HttpPut("{commentId:guid}")]
     public async Task<IActionResult> Update(
         [FromRoute] Guid commentId,
         UpdateCommentDto request,
@@ -46,16 +43,14 @@ public class CommentsController : ControllerBase
         return Ok("Update comment");
     }
 
-
     [HttpPatch("{commentId:guid}/rate")]
-    public async Task<IActionResult>  RateComment(
-        [FromRoute] Guid commentId, 
+    public async Task<IActionResult> RateComment(
+        [FromRoute] Guid commentId,
         RateCommentDto request,
         CancellationToken cancellationToken)
     {
         return Ok("Rate comment");
     }
-
 
     [HttpDelete("{commentId:guid}")]
     public async Task<IActionResult> Delete(
@@ -65,10 +60,8 @@ public class CommentsController : ControllerBase
         return Ok("Delete comment");
     }
 
-
     public CommentsController(ICommentsService commentsService)
     {
         _commentsService = commentsService;
     }
 }
-

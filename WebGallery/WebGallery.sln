@@ -26,6 +26,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebGallery.Application", "s
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebGallery.Infrastracture.PostgreSql", "src\WebGallery.Infrastracture.PostgreSql\WebGallery.Infrastracture.PostgreSql.csproj", "{FAF999AB-C610-45FC-BC65-E4C00EC1E54B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shared", "src\Shared\Shared.csproj", "{387B44D5-4A6B-4865-854F-A64A1A800314}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -56,6 +58,10 @@ Global
 		{FAF999AB-C610-45FC-BC65-E4C00EC1E54B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FAF999AB-C610-45FC-BC65-E4C00EC1E54B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FAF999AB-C610-45FC-BC65-E4C00EC1E54B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{387B44D5-4A6B-4865-854F-A64A1A800314}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{387B44D5-4A6B-4865-854F-A64A1A800314}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{387B44D5-4A6B-4865-854F-A64A1A800314}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{387B44D5-4A6B-4865-854F-A64A1A800314}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -67,6 +73,7 @@ Global
 		{FE6713E2-410B-4BBE-9CB7-031B2D72AC60} = {3BFFB86A-0234-47F5-8CC3-A4B321C42B38}
 		{75918CE9-9F76-46A7-A9A6-CF2D7D50F707} = {3BFFB86A-0234-47F5-8CC3-A4B321C42B38}
 		{FAF999AB-C610-45FC-BC65-E4C00EC1E54B} = {3BFFB86A-0234-47F5-8CC3-A4B321C42B38}
+		{387B44D5-4A6B-4865-854F-A64A1A800314} = {3BFFB86A-0234-47F5-8CC3-A4B321C42B38}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {65AB66AB-4A04-4132-A1ED-9C23A3A7C933}

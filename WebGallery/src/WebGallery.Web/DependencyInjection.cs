@@ -16,7 +16,7 @@ public static class DependencyInjection
     {
         services.AddControllers();
         services.AddOpenApi();
-        
+
         return services;
     }
 }

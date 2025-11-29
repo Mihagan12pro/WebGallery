@@ -1,8 +1,8 @@
 ﻿using Dapper;
 using Microsoft.Extensions.Configuration;
 using Npgsql;
-using WebGallery.Application;
 using WebGallery.Application.Comments;
+using WebGallery.Application.Database;
 using WebGallery.Domain.Comments;
 
 namespace WebGallery.Infrastracture.PostgreSql.Repositories;
@@ -10,20 +10,20 @@ namespace WebGallery.Infrastracture.PostgreSql.Repositories;
 public class CommentsDapperRepository : ICommentsRepository
 {
     private readonly ISqlConnectionFactory _connectionFactory;
-    
+
     public async Task<Guid> AddAsync(Comment comment, CancellationToken cancellationToken)
     {
         const string sql = """
                            INSERT INTO comments (body, user_id, entity_id) 
                            VALUES (@body, @user_id, @entity_id)
                            """;
-        
+
         using var sqlConnection = _connectionFactory.CreateConnection();
 
         await sqlConnection.ExecuteAsync(sql, new
         {
             Body = comment.Body,
-            userId =  comment.UserId,
+            userId = comment.UserId,
             entityId = comment.EntityId
         });
         
@@ -47,7 +47,7 @@ public class CommentsDapperRepository : ICommentsRepository
 
     public async Task<int> GetUserReputationAsync(Guid userId, CancellationToken cancellationToken)
     {
-        throw new NotImplementedException();
+        return 1;
     }
 
 

@@ -18,7 +18,7 @@ public class Comment
 
     public int Likes { get; set; }
 
-    public int DisLines { get; set; }
+    public int DisLikes { get; set; }
 
     public Comment(
         Guid id,
@@ -34,6 +34,6 @@ public class Comment
         EntityId = entityId;
         Body = body;
         Likes = likes;
-        DisLines = disLikes;
+        DisLikes = disLikes;
     }
 }

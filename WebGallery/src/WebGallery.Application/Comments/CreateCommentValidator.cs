@@ -7,10 +7,10 @@ public class CreateCommentValidator : AbstractValidator<CreateCommentDto>
 {
     public CreateCommentValidator()
     {
-        RuleFor(com => com.Body).NotEmpty().WithMessage("Body is required!");
-        
-        RuleFor(com => com.UserId).NotEmpty().WithMessage("UserId is required!");
-        
-        RuleFor(com => com.EntityId).NotEmpty().WithMessage("EntityId is required!");
+        RuleFor(com => com.Body).NotEmpty().WithMessage("The Body field is required!");
+
+        RuleFor(com => com.UserId).NotEmpty().WithMessage("The UserId field is required!");
+
+        RuleFor(com => com.EntityId).NotEmpty().WithMessage("The EntityId field is required!");
     }
 }
