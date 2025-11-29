@@ -27,7 +27,10 @@ namespace WebGallery.Presenters
             if (distinctErrorTypes.Count() > 1)
                statusCode = StatusCodes.Status500InternalServerError;
 
-            return new ObjectResult(statusCode);
+            return new ObjectResult(failure)
+            {
+                StatusCode = statusCode,
+            };
         }
 
         private static int MapErrorTypesAndStatusCodes(ErrorType errorType) =>

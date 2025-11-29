@@ -19,7 +19,7 @@ public class CommentsController : ControllerBase
 
         if (result.IsFailure)
         {
-
+            return result.Error.ToErrorResponse();
         }
 
         return Ok(result.Value);
