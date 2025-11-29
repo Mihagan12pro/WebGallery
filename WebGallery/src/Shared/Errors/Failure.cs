@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Shared.Errors
 {
-    public class ErrorsCollection : IEnumerable<Error>
+    public class Failure : IEnumerable<Error>
     {
         private readonly List<Error> _errors;
 
@@ -18,15 +18,15 @@ namespace Shared.Errors
 
         IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
 
-        public ErrorsCollection(IEnumerable<Error> errors)
+        public Failure(IEnumerable<Error> errors)
         {
             _errors = [.. errors];
         }
 
-        public static implicit operator ErrorsCollection(Error[] errors)
+        public static implicit operator Failure(Error[] errors)
             => new(errors);
 
-        public static implicit operator ErrorsCollection(Error error)
+        public static implicit operator Failure(Error error)
             => new([error]);
     }
 }

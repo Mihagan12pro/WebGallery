@@ -1,4 +1,5 @@
 ﻿using System.Text.Json.Serialization;
+using Shared.Errors.Enums;
 
 namespace Shared.Errors
 {
@@ -13,13 +14,19 @@ namespace Shared.Errors
 
         public string? InvalidField { get; }
 
-        public static Error NotFound(string? code, string message, Guid? id = null) => new (code ?? "record.not.found", message, ErrorType.NOT_FOUND);
+        public static Error NotFound(string? code, string message, Guid? id = null)
+            => new (code ?? "record.not.found", message, ErrorType.NOT_FOUND);
 
-        public static Error Validation(string? code, string message, string? invalidField = null) => new(code ?? "value.is.invalid", message, ErrorType.VALIDATION, invalidField);
+        public static Error Validation(string? code, string message, string? invalidField = null)
+            => new(code ?? "value.is.invalid", message, ErrorType.VALIDATION, invalidField);
 
-        public static Error Conflict(string? code, string message) => new(code ?? "value.is.conflict", message, ErrorType.CONFLICT);
+        public static Error Conflict(string? code, string message)
+            => new(code ?? "value.is.conflict", message, ErrorType.CONFLICT);
 
-        public static Error Failure(string? code, string message) => new(code ?? "failure", message, ErrorType.FAILURE);
+        public static Error Failure(string? code, string message)
+            => new(code ?? "failure", message, ErrorType.FAILURE);
+
+        public Failure ToCollection() => this;
 
         [JsonConstructor]
         private Error(string code, string message, ErrorType type, string? invalidField = null)
@@ -29,28 +36,5 @@ namespace Shared.Errors
             Type = type;
             InvalidField = invalidField;
         }
-    }
-
-    public enum ErrorType
-    {
-        /// <summary>
-        /// Validation error
-        /// </summary>
-        VALIDATION,
-
-        /// <summary>
-        /// Not found error
-        /// </summary>
-        NOT_FOUND,
-
-        /// <summary>
-        /// Server error
-        /// </summary>
-        FAILURE,
-
-        /// <summary>
-        /// Conflict error
-        /// </summary>
-        CONFLICT,
     }
 }

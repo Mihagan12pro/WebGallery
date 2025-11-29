@@ -1,10 +1,12 @@
-﻿using WebGallery.Contracts.Comments;
+﻿using CSharpFunctionalExtensions;
+using Shared.Errors;
+using WebGallery.Contracts.Comments;
 
 namespace WebGallery.Application.Comments;
 
 public interface ICommentsService
 {
-    Task<Guid> Create(
+    Task<Result<Guid, Failure>> Create(
         CreateCommentDto commentDto,
         CancellationToken cancellationToken);
 }
