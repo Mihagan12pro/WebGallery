@@ -6,7 +6,7 @@ namespace WebGallery.Infrastracture.PostgreSql.Comments;
 
 public class CommentsEFCoreRepository : ICommentsRepository
 {
-    private readonly CommentsDbContext _commentsContext;
+    private readonly WebGalleryContext _commentsContext;
 
     public async Task<Guid> AddAsync(Comment comment, CancellationToken cancellationToken)
     {
@@ -44,8 +44,10 @@ public class CommentsEFCoreRepository : ICommentsRepository
         return -1;//Заглушка
     }
 
-    public CommentsEFCoreRepository(CommentsDbContext commentsContext)
+    public CommentsEFCoreRepository(WebGalleryContext commentsContext)
     {
         _commentsContext = commentsContext;
+
+           // ._commentsContext.
     }
 }

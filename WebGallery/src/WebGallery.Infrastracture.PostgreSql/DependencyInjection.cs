@@ -22,7 +22,7 @@ public static class DependencyInjection
         /// For EF Core
         /// </summary>
 
-        services.AddDbContext<CommentsDbContext>();
+        services.AddDbContext<WebGalleryContext>();
 
         services.AddScoped<ICommentsRepository, CommentsEFCoreRepository>();
 

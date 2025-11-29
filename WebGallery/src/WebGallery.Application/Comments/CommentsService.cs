@@ -1,6 +1,5 @@
 ﻿using FluentValidation;
 using Microsoft.Extensions.Logging;
-using System.Text.Json;
 using WebGallery.Application.Comments.Fails.Exceptions;
 using WebGallery.Application.Extensions;
 using WebGallery.Contracts.Comments;
@@ -38,7 +37,7 @@ public class CommentsService : ICommentsService
 
         if (await _commentsRepository.GetUserReputationAsync(commentDto.UserId, cancellationToken) < 0)
         {
-            //throw new CommentLowReputationException();
+            throw new CommentLowReputationException();
         }
 
         var comment = new Comment(commentId, commentDto.UserId, commentDto.EntityId, commentDto.Body);

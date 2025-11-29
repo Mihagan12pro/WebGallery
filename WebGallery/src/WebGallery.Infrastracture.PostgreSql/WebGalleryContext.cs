@@ -2,9 +2,9 @@
 using WebGallery.Application;
 using WebGallery.Domain.Comments;
 
-namespace WebGallery.Infrastracture.PostgreSql.Comments;
+namespace WebGallery.Infrastracture.PostgreSql;
 
-public class CommentsDbContext : DbContext
+public class WebGalleryContext : DbContext
 {
     public DbSet<Comment> Comments { get; set; }
 }
