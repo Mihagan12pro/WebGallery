@@ -1,4 +1,4 @@
-﻿using Shared;
+﻿using Shared.Errors;
 
 namespace WebGallery.Application.Comments.Fails
 {

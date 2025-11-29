@@ -1,6 +1,6 @@
 ﻿using FluentValidation;
 using FluentValidation.Results;
-using Shared;
+using Shared.Errors;
 
 namespace WebGallery.Application.Extensions
 {
