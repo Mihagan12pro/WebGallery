@@ -1,5 +1,5 @@
 ﻿using System.Text.Json;
-using Shared;
+using Shared.Errors;
 using WebGallery.Application.Exceptions;
 
 namespace WebGallery.Web.Middlewares

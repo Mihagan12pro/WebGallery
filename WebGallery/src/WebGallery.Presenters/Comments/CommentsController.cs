@@ -2,7 +2,7 @@
 using WebGallery.Application.Comments;
 using WebGallery.Contracts.Comments;
 
-namespace WebGallery.Presenters;
+namespace WebGallery.Presenters.Comments;
 
 [ApiController]
 [Route("api/[controller]")]
@@ -15,7 +15,14 @@ public class CommentsController : ControllerBase
         [FromBody] CreateCommentDto request,
         CancellationToken cancellationToken)
     {
-        return Ok(await _commentsService.Create(request, cancellationToken));
+        var result = await _commentsService.Create(request, cancellationToken);
+
+        if (result.IsFailure)
+        {
+            return result.Error.ToErrorResponse();
+        }
+
+        return Ok(result.Value);
     }
 
     [HttpGet]

@@ -1,5 +1,8 @@
-﻿using FluentValidation;
+﻿using CSharpFunctionalExtensions;
+using FluentValidation;
 using Microsoft.Extensions.Logging;
+using Shared.Errors;
+using WebGallery.Application.Comments.Fails;
 using WebGallery.Application.Comments.Fails.Exceptions;
 using WebGallery.Application.Extensions;
 using WebGallery.Contracts.Comments;
@@ -23,21 +26,23 @@ public class CommentsService : ICommentsService
         _creationValidator = creationValidator;
     }
 
-    public async Task<Guid> Create(
+    public async Task<Result<Guid, Failure>> Create(
         CreateCommentDto commentDto,
         CancellationToken cancellationToken)
     {
         var validationResult = await _creationValidator.ValidateAsync(commentDto, cancellationToken);
         if (!validationResult.IsValid)
         {
-            throw new CommentValidationException(validationResult.ToErrors());
+            return validationResult.ToErrors();
         }
 
         Guid commentId = Guid.NewGuid();
 
         if (await _commentsRepository.GetUserReputationAsync(commentDto.UserId, cancellationToken) < 0)
         {
-            throw new CommentLowReputationException();
+            return Errors.Comments.
+                LowReputation().
+                    ToCollection();
         }
 
         var comment = new Comment(commentId, commentDto.UserId, commentDto.EntityId, commentDto.Body);
@@ -49,7 +54,6 @@ public class CommentsService : ICommentsService
         return commentId;
     }
 
-    
     /*public async Task<IActionResult> Get(
         GetCommentsByExhibitionDto request,
         CancellationToken cancellationToken)
@@ -57,7 +61,7 @@ public class CommentsService : ICommentsService
         return Ok("Get all comments");
     }
 
-    
+
     public async Task<IActionResult> GetById(
         Guid commentId,
         CancellationToken cancellationToken)
