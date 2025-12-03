@@ -15,14 +15,14 @@ public class CommentsController : ControllerBase
         [FromBody] CreateCommentDto request,
         CancellationToken cancellationToken)
     {
-        var result = await _commentsService.Create(request, cancellationToken);
+        var response = await _commentsService.Create(request, cancellationToken);
 
-        if (result.IsFailure)
+        if (response.IsFailure)
         {
-            return result.Error.ToErrorResponse();
+            return response.Error.ToErrorResponse();
         }
 
-        return Ok(result.Value);
+        return Ok(response.Value);
     }
 
     [HttpGet]

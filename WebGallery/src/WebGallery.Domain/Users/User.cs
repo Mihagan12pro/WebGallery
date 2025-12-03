@@ -11,11 +11,11 @@ namespace WebGallery.Domain.Users
     {
         public Guid Id { get; set; }
 
-        public string? UserName { get; set; }
+        public string? UserName { get; private set; }
 
-        public string? Email { get; set; }
+        public string? Email { get; private set; }
 
-        public string? PasswordHash { get; set; }
+        public string? PasswordHash { get; private set; }
 
         public static User Create(Guid id, string userName, string email, string passwordHash)
         {
@@ -27,6 +27,7 @@ namespace WebGallery.Domain.Users
             Id = id;
             UserName = userName;
             Email = email;
+            PasswordHash = passwordHash;
         }
     }
 }

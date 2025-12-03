@@ -11,4 +11,7 @@
     <ProjectReference Include="..\WebGallery.Application\WebGallery.Application.csproj" />
     <ProjectReference Include="..\WebGallery.Contracts\WebGallery.Contracts.csproj" />
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Users\" />
+  </ItemGroup>
 </Project>

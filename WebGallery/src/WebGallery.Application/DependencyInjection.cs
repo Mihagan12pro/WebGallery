@@ -1,6 +1,7 @@
 ﻿using FluentValidation;
 using Microsoft.Extensions.DependencyInjection;
 using WebGallery.Application.Comments;
+using WebGallery.Application.Identification;
 
 namespace WebGallery.Application;
 
@@ -10,6 +11,7 @@ public static class DependencyInjection
     {
         services.AddValidatorsFromAssembly(typeof(DependencyInjection).Assembly);
         services.AddScoped<ICommentsService, CommentsService>();
+        services.AddScoped<IIdentificationService, IdentificationService>();
 
         return services;
     }

@@ -22,7 +22,7 @@ public class Comment
 
     public Comment(
         Guid id,
-        Guid userId,
+        Guid userId, 
         Guid entityId,
         string body,
         int likes = 0,
@@ -30,10 +30,15 @@ public class Comment
     {
         DateTime = DateTime.Now;
         Id = id;
+
         UserId = userId;
+
         EntityId = entityId;
+
         Body = body;
+
         Likes = likes;
+
         DisLikes = disLikes;
     }
 }
