@@ -1,0 +1,13 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace WebGallery.Infrastructure.Security.PasswordHasher
+{
+    public interface IPasswordHasher
+    {
+        string GenerateHash(string password);
+    }
+}
