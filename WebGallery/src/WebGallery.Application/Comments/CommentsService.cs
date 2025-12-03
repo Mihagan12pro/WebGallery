@@ -16,16 +16,6 @@ public class CommentsService : ICommentsService
     private readonly ILogger<CommentsService> _logger;
     private readonly IValidator<CreateCommentDto> _creationValidator;
 
-    public CommentsService(
-        ICommentsRepository commentsRepository,
-        IValidator<CreateCommentDto>creationValidator,
-        ILogger<CommentsService> logger)
-    {
-        _commentsRepository = commentsRepository;
-        _logger = logger;
-        _creationValidator = creationValidator;
-    }
-
     public async Task<Result<Guid, Failure>> Create(
         CreateCommentDto commentDto,
         CancellationToken cancellationToken)
@@ -94,4 +84,15 @@ public class CommentsService : ICommentsService
     {
         return Ok("Delete comment");
     }*/
+
+    public CommentsService(
+        ICommentsRepository commentsRepository,
+        ILogger<CommentsService> logger,
+        IValidator<CreateCommentDto> creationValidator)
+    {
+        _commentsRepository = commentsRepository;
+        _logger = logger;
+        _creationValidator = creationValidator;
+    }
+
 }
