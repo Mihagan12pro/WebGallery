@@ -1,6 +1,6 @@
 ﻿using BCrypt.Net;
 
-namespace WebGallery.Infrastructure.Security.PasswordHasher
+namespace WebGallery.Infrastructure.Security.PasswordHashers
 {
     public class PasswordHasher : IPasswordHasher
     {

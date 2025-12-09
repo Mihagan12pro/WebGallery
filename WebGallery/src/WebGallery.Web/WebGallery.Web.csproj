@@ -11,6 +11,7 @@
     <ItemGroup>
       <ProjectReference Include="..\WebGallery.Application\WebGallery.Application.csproj" />
       <ProjectReference Include="..\WebGallery.Infrastracture.PostgreSql\WebGallery.Infrastracture.PostgreSql.csproj" />
+      <ProjectReference Include="..\WebGallery.Infrastructure.Security\WebGallery.Infrastructure.Security.csproj" />
       <ProjectReference Include="..\WebGallery.Presenters\WebGallery.Presenters.csproj" />
     </ItemGroup>
 </Project>
