@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using WebGallery.Application.Identification;
 using WebGallery.Infrastructure.Security.Jwt;
 using WebGallery.Infrastructure.Security.PasswordHashers;
 

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WebGallery.Infrastructure.Security.PasswordHashers
+namespace WebGallery.Application.Identification
 {
     public interface IPasswordHasher
     {

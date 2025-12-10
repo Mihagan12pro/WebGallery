@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Configuration.Json;
+using System.Reflection;
 using WebGallery.Domain.Comments;
 using WebGallery.Domain.Users;
 
@@ -17,7 +17,9 @@ public class WebGalleryContext : DbContext
         var configurationBuilder = new ConfigurationBuilder()
                .SetBasePath(Directory.GetCurrentDirectory());
 
-        configurationBuilder.AddJsonFile("DbConfiguration.json");
+        string path = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)!, "Configuration", "DbConfiguration.json");
+
+        configurationBuilder.AddJsonFile(path);
 
         var configurationRoot = configurationBuilder.Build();
 
@@ -25,5 +27,25 @@ public class WebGalleryContext : DbContext
             GetConnectionString("GalleryDbContext");
 
         optionsBuilder.UseNpgsql(connectionString);
+    }
+
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        modelBuilder.Entity<User>().
+            HasIndex(u => u.Email).
+                IsUnique();
+
+
+        modelBuilder.Entity<User>().
+           HasIndex(u => u.UserName).
+               IsUnique();
+
+        modelBuilder.Entity<User>().
+            HasKey(u => u.Id);
+    }
+
+    public WebGalleryContext()
+    {
+        Database.EnsureCreated();
     }
 }
