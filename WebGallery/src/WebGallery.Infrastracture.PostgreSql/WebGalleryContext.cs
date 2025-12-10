@@ -1,6 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System.Reflection;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Microsoft.Extensions.Configuration;
-using System.Reflection;
 using WebGallery.Domain.Comments;
 using WebGallery.Domain.Users;
 
@@ -31,6 +32,14 @@ public class WebGalleryContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        modelBuilder.Entity<User>().
+            Property(u => u.Email).
+                HasColumnType("citext");
+
+        modelBuilder.Entity<User>().
+        Property(u => u.UserName).
+            HasColumnType("citext");
+
         modelBuilder.Entity<User>().
             HasIndex(u => u.Email).
                 IsUnique();

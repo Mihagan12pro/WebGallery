@@ -11,6 +11,6 @@ namespace WebGallery.Application.Identification
 {
     public interface IIdentificationRepository
     {
-        Task<Result<Guid, Error>> RegisterAsync(User user, CancellationToken cancellationToken);
+        Task<Result<Guid, Failure>> RegisterAsync(User user, CancellationToken cancellationToken);
     }
 }

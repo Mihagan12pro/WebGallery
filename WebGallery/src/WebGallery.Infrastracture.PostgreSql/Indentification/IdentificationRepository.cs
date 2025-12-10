@@ -2,7 +2,6 @@
 using Microsoft.EntityFrameworkCore;
 using Npgsql;
 using Shared.Errors;
-using System.Text.Json;
 using WebGallery.Application.Identification;
 using WebGallery.Domain.Users;
 
@@ -10,7 +9,7 @@ namespace WebGallery.Infrastracture.PostgreSql.Indentification
 {
     internal class IdentificationRepository : WebGalleryRepositoryBase, IIdentificationRepository
     {
-        public async Task<Result<Guid, Error>> RegisterAsync(User user, CancellationToken cancellationToken)
+        public async Task<Result<Guid, Failure>> RegisterAsync(User user, CancellationToken cancellationToken)
         {
             await webGalleryContext.Users.AddAsync(user, cancellationToken);
 
@@ -24,7 +23,7 @@ namespace WebGallery.Infrastracture.PostgreSql.Indentification
                 {
                     Error error = Error.Conflict(null, $"Duplicate key violates unique constraint: {postgresException.ConstraintName}");
 
-                    return error;
+                    return error.ToCollection();
                 }
             }
 

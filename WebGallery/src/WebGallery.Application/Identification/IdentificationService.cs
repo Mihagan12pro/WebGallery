@@ -46,7 +46,7 @@ namespace WebGallery.Application.Identification
 
             var result = await _identificationRepository.RegisterAsync(user, cancellationToken);
 
-            return result.Value;
+            return result;
         }
 
         public IdentificationService(
