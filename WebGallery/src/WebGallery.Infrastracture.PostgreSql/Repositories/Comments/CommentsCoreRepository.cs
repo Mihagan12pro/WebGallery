@@ -2,9 +2,9 @@
 using WebGallery.Application.Comments;
 using WebGallery.Domain.Comments;
 
-namespace WebGallery.Infrastracture.PostgreSql.Comments;
+namespace WebGallery.Infrastracture.PostgreSql.Repositories.Comments;
 
-public class CommentsEFCoreRepository : ICommentsRepository
+public class CommentsCoreRepository : ICommentsRepository
 {
     private readonly WebGalleryContext _commentsContext;
 
@@ -44,7 +44,7 @@ public class CommentsEFCoreRepository : ICommentsRepository
         return -1;//Заглушка
     }
 
-    public CommentsEFCoreRepository(WebGalleryContext commentsContext)
+    public CommentsCoreRepository(WebGalleryContext commentsContext)
     {
         _commentsContext = commentsContext;
 

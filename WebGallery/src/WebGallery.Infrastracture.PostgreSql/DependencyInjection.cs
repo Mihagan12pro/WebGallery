@@ -1,10 +1,8 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using WebGallery.Application.Comments;
-using WebGallery.Application.Database;
 using WebGallery.Application.Identification;
-using WebGallery.Infrastracture.PostgreSql.Comments;
-using WebGallery.Infrastracture.PostgreSql.Indentification;
-using WebGallery.Infrastracture.PostgreSql.Repositories;
+using WebGallery.Infrastracture.PostgreSql.Repositories.Comments;
+using WebGallery.Infrastracture.PostgreSql.Repositories.Indentification;
 
 namespace WebGallery.Infrastracture.PostgreSql;
 
@@ -26,7 +24,7 @@ public static class DependencyInjection
 
         services.AddDbContext<WebGalleryContext>();
 
-        services.AddScoped<ICommentsRepository, CommentsEFCoreRepository>();
+        services.AddScoped<ICommentsRepository, CommentsCoreRepository>();
         services.AddScoped<IIdentificationRepository, IdentificationRepository>();
 
         return services;

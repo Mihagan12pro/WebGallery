@@ -2,6 +2,7 @@
 using FluentValidation;
 using Microsoft.Extensions.Logging;
 using Shared.Errors;
+using Shared.Errors.Enums;
 using WebGallery.Application.Extensions;
 using WebGallery.Contracts.Identification;
 using WebGallery.Domain.Users;
