@@ -8,10 +8,11 @@ public static class DependencyInjection
 {
     public static IServiceCollection AddProgramDependencies(this IServiceCollection services)
     {
-        return services.AddApplication().
+        return services.
             AddWebDependencies().
-                AddPostgresInfrastructure().
-                    AddSecurityInfrastructure();
+                AddApplication().
+                    AddPostgresInfrastructure().
+                        AddSecurityInfrastructure();
     }
 
     private static IServiceCollection AddWebDependencies(this IServiceCollection services)

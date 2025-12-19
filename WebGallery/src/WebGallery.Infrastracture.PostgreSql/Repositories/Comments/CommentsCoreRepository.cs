@@ -4,7 +4,7 @@ using WebGallery.Domain.Comments;
 
 namespace WebGallery.Infrastracture.PostgreSql.Repositories.Comments;
 
-public class CommentsCoreRepository : ICommentsRepository
+internal class CommentsCoreRepository : ICommentsRepository
 {
     private readonly WebGalleryContext _commentsContext;
 

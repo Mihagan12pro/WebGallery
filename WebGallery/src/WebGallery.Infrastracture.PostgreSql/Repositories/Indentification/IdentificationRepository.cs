@@ -1,9 +1,12 @@
 ﻿using CSharpFunctionalExtensions;
 using Microsoft.EntityFrameworkCore;
 using Npgsql;
+using Npgsql.EntityFrameworkCore.PostgreSQL.Query.Expressions.Internal;
 using Shared.Errors;
+using Shared.Errors.Common;
 using WebGallery.Application.Identification;
 using WebGallery.Domain.Users;
+using WebGallery.Infrastracture.PostgreSql.Extensions;
 
 namespace WebGallery.Infrastracture.PostgreSql.Repositories.Indentification
 {
@@ -11,26 +14,30 @@ namespace WebGallery.Infrastracture.PostgreSql.Repositories.Indentification
     {
         public async Task<Result<Guid, Failure>> RegisterAsync(User user, CancellationToken cancellationToken)
         {
-            List<Error> errors = new List<Error>();
+            Failure? errors = new Failure([]);
 
-            var dublicateName = await webGalleryContext.Users.
-                Select(u => u.UserName).
-                    FirstOrDefaultAsync(n => n == user.UserName);
+            var result = await webGalleryContext.
+                CheckUniqueConstrait<User>(
+                    user,
+                    nameof(user.Email),
+                    user.Email!,
+                    "This email is already taken!");
 
-            if (dublicateName != null)
-                errors.Add(DbErrorMaster.GetUniqueConstaitError("This user name is already taken!", nameof(user.UserName)));
+            if (result.IsFailure)
+                errors.Add(result.Error);
 
-            var dublicateEmail = await webGalleryContext.Users.
-                    Select(u => u.Email).
-                        FirstOrDefaultAsync(e => e == user.Email);
+            result = await webGalleryContext.
+                CheckUniqueConstrait<User>(
+                    user,
+                    nameof(user.UserName),
+                    user.UserName!,
+                    "This user name is already taken!");
 
-            if (dublicateEmail != null)
-                errors.Add(DbErrorMaster.GetUniqueConstaitError("This email is already taken!", nameof(user.Email)));
+            if (result.IsFailure)
+                errors.Add(result.Error);
 
-            if (errors.Count > 0)
-            {
-                return new Failure(errors);
-            }
+            if (errors.Count() > 0)
+                return errors;
 
             await webGalleryContext.Users.AddAsync(user, cancellationToken);
 
@@ -39,7 +46,18 @@ namespace WebGallery.Infrastracture.PostgreSql.Repositories.Indentification
             return user.Id;
         }
 
-        public IdentificationRepository(WebGalleryContext context) 
+        public async Task<Result<string, Failure>> GetPasswordHashAsync(string userName, CancellationToken cancellationToken)
+        {
+            User? user = await webGalleryContext.Users.FirstAsync(u => u.UserName == userName);
+
+
+            if (user == null)
+                return new InvalidPasswordOrLoginError().Failure;
+
+            return user.PasswordHash!;
+        }
+
+        public IdentificationRepository(WebGalleryContext context)
             : base(context)
         {
         }

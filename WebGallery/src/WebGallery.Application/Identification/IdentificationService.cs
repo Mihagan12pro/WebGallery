@@ -2,6 +2,7 @@
 using FluentValidation;
 using Microsoft.Extensions.Logging;
 using Shared.Errors;
+using Shared.Errors.Common;
 using Shared.Errors.Enums;
 using WebGallery.Application.Extensions;
 using WebGallery.Contracts.Identification;
@@ -24,6 +25,19 @@ namespace WebGallery.Application.Identification
             if (!validationResult.IsValid)
             {
                 return validationResult.ToErrors();
+            }
+
+            var getPasswordResult = await _identificationRepository.
+                GetPasswordHashAsync(request.UserName, cancellationToken);
+
+            if (getPasswordResult.IsFailure)
+                return getPasswordResult.Error;
+
+            bool verifyResult = _passwordHasher.Verify(request.Password, getPasswordResult.Value);
+
+            if (!verifyResult)
+            {
+                return new InvalidPasswordOrLoginError().Failure;
             }
 
             throw new NotImplementedException();

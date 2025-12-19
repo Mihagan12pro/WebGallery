@@ -1,10 +1,5 @@
 ﻿using CSharpFunctionalExtensions;
 using Shared.Errors;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using WebGallery.Domain.Users;
 
 namespace WebGallery.Application.Identification
@@ -12,5 +7,7 @@ namespace WebGallery.Application.Identification
     public interface IIdentificationRepository
     {
         Task<Result<Guid, Failure>> RegisterAsync(User user, CancellationToken cancellationToken);
+
+        Task<Result<string, Failure>> GetPasswordHashAsync(string userName, CancellationToken cancellationToken);
     }
 }

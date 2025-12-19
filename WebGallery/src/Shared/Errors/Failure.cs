@@ -11,6 +11,9 @@ namespace Shared.Errors
     {
         private readonly List<Error> _errors;
 
+        public void Add(Error error)
+            => _errors.Add(error);
+
         public IEnumerator<Error> GetEnumerator()
         {
             return _errors.GetEnumerator();
