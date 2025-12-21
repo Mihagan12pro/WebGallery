@@ -1,7 +1,7 @@
 ﻿using FluentValidation;
 using Microsoft.Extensions.DependencyInjection;
-using WebGallery.Application.Comments;
-using WebGallery.Application.Identification;
+using WebGallery.Application.Services.Comments;
+using WebGallery.Application.Services.Identification;
 
 namespace WebGallery.Application;
 

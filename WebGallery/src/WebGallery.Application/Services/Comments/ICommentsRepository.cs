@@ -1,6 +1,6 @@
 ﻿using WebGallery.Domain.Comments;
 
-namespace WebGallery.Application.Comments;
+namespace WebGallery.Application.Services.Comments;
 
 public interface ICommentsRepository
 {

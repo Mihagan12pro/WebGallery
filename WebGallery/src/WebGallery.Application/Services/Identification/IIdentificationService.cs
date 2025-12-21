@@ -2,7 +2,7 @@
 using Shared.Errors;
 using WebGallery.Contracts.Identification;
 
-namespace WebGallery.Application.Identification
+namespace WebGallery.Application.Services.Identification
 {
     public interface IIdentificationService
     {

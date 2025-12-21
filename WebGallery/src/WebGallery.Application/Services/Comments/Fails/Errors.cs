@@ -1,6 +1,6 @@
 ﻿using Shared.Errors;
 
-namespace WebGallery.Application.Comments.Fails
+namespace WebGallery.Application.Services.Comments.Fails
 {
     public partial class Errors
     {

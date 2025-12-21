@@ -2,7 +2,7 @@
 using Shared.Errors;
 using WebGallery.Contracts.Comments;
 
-namespace WebGallery.Application.Comments;
+namespace WebGallery.Application.Services.Comments;
 
 public interface ICommentsService
 {

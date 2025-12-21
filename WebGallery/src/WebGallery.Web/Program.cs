@@ -21,4 +21,7 @@ if (app.Environment.IsDevelopment())
 
 app.MapControllers();
 
+app.UseAuthorization();
+app.UseAuthentication();
+
 app.Run();

@@ -1,7 +1,7 @@
 ﻿using FluentValidation;
 using WebGallery.Contracts.Comments;
 
-namespace WebGallery.Application.Comments;
+namespace WebGallery.Application.Services.Comments;
 
 public class CreateCommentValidator : AbstractValidator<CreateCommentDto>
 {

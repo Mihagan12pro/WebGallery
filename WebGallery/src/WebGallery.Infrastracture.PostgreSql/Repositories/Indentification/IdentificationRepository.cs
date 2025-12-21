@@ -1,10 +1,8 @@
 ﻿using CSharpFunctionalExtensions;
 using Microsoft.EntityFrameworkCore;
-using Npgsql;
-using Npgsql.EntityFrameworkCore.PostgreSQL.Query.Expressions.Internal;
 using Shared.Errors;
 using Shared.Errors.Common;
-using WebGallery.Application.Identification;
+using WebGallery.Application.Services.Identification;
 using WebGallery.Domain.Users;
 using WebGallery.Infrastracture.PostgreSql.Extensions;
 

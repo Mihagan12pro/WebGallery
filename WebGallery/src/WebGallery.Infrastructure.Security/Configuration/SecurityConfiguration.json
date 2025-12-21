@@ -1,0 +1,6 @@
+﻿{
+  "JwtOptions": {
+    "SecretKey": "2zm3FLoCuaAFyloMd-alY-9SFybN2kJH-OKbQYtHsWU=",
+    "ExpiredHours": "12"
+  }
+}

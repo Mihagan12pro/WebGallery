@@ -1,7 +1,7 @@
 ﻿using FluentValidation;
 using WebGallery.Contracts.Identification;
 
-namespace WebGallery.Application.Identification.Validator
+namespace WebGallery.Application.Services.Identification.Validator
 {
     public class SignInValidator : AbstractValidator<SignInDto>
     {

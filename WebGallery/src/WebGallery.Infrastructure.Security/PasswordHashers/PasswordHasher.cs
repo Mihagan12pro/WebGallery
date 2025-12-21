@@ -1,5 +1,5 @@
 ﻿using BCrypt.Net;
-using WebGallery.Application.Identification;
+using WebGallery.Application.Services.Identification;
 
 namespace WebGallery.Infrastructure.Security.PasswordHashers
 {

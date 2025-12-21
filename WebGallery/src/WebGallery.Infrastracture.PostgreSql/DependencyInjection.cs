@@ -1,10 +1,12 @@
 ﻿using System.Reflection;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using WebGallery.Application.Comments;
-using WebGallery.Application.Identification;
+using WebGallery.Application.Services.Comments;
+using WebGallery.Application.Services.Identification;
+using WebGallery.Application.Services.Users;
 using WebGallery.Infrastracture.PostgreSql.Repositories.Comments;
 using WebGallery.Infrastracture.PostgreSql.Repositories.Indentification;
+using WebGallery.Infrastracture.PostgreSql.Repositories.Users;
 
 namespace WebGallery.Infrastracture.PostgreSql;
 
@@ -20,6 +22,7 @@ public static class DependencyInjection
 
         services.AddScoped<ICommentsRepository, CommentsCoreRepository>();
         services.AddScoped<IIdentificationRepository, IdentificationRepository>();
+        services.AddScoped<IUsersRepository, UsersRepository>();
 
         return services;
     }

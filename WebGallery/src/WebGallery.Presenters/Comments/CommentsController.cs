@@ -1,5 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using WebGallery.Application.Comments;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using WebGallery.Application.Services.Comments;
 using WebGallery.Contracts.Comments;
 
 namespace WebGallery.Presenters.Comments;
@@ -11,6 +12,7 @@ public class CommentsController : ControllerBase
     private readonly ICommentsService _commentsService;
 
     [HttpPost]
+    [Authorize]
     public async Task<IActionResult> Create(
         [FromBody] CreateCommentDto request,
         CancellationToken cancellationToken)
@@ -42,6 +44,7 @@ public class CommentsController : ControllerBase
     }
 
     [HttpPut("{commentId:guid}")]
+    [Authorize]
     public async Task<IActionResult> Update(
         [FromRoute] Guid commentId,
         UpdateCommentDto request,
@@ -51,6 +54,7 @@ public class CommentsController : ControllerBase
     }
 
     [HttpPatch("{commentId:guid}/rate")]
+    [Authorize]
     public async Task<IActionResult> RateComment(
         [FromRoute] Guid commentId,
         RateCommentDto request,
@@ -60,6 +64,7 @@ public class CommentsController : ControllerBase
     }
 
     [HttpDelete("{commentId:guid}")]
+    [Authorize]
     public async Task<IActionResult> Delete(
         [FromRoute] Guid commentId,
         CancellationToken cancellationToken)

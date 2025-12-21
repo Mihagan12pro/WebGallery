@@ -2,13 +2,12 @@
 using FluentValidation;
 using Microsoft.Extensions.Logging;
 using Shared.Errors;
-using WebGallery.Application.Comments.Fails;
-using WebGallery.Application.Comments.Fails.Exceptions;
 using WebGallery.Application.Extensions;
+using WebGallery.Application.Services.Comments.Fails;
 using WebGallery.Contracts.Comments;
 using WebGallery.Domain.Comments;
 
-namespace WebGallery.Application.Comments;
+namespace WebGallery.Application.Services.Comments;
 
 public class CommentsService : ICommentsService
 {

@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using WebGallery.Application.Comments;
+using WebGallery.Application.Services.Comments;
 using WebGallery.Domain.Comments;
 
 namespace WebGallery.Infrastracture.PostgreSql.Repositories.Comments;

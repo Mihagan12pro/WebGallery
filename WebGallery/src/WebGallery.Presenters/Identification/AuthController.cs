@@ -1,5 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using WebGallery.Application.Identification;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using WebGallery.Application.Services.Identification;
 using WebGallery.Contracts.Identification;
 
 namespace WebGallery.Presenters.Identification
@@ -11,7 +12,9 @@ namespace WebGallery.Presenters.Identification
         private readonly IIdentificationService _identificationService;
 
         [HttpPost("/login")]
-        public async Task<IActionResult> Login([FromBody]  LoginDto request, CancellationToken cancellationToken)
+        public async Task<IActionResult> Login(
+            [FromBody] LoginDto request,
+            CancellationToken cancellationToken)
         {
             var response = await _identificationService.Login(request, cancellationToken);
 
@@ -20,7 +23,9 @@ namespace WebGallery.Presenters.Identification
                 return response.Error.ToErrorResponse();
             }
 
-            return Ok(response.Value);
+            var token = response.Value;
+
+            return Ok(token);
         }
 
         [HttpPost("/signin")]

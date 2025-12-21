@@ -3,6 +3,7 @@ using System.Security.Claims;
 using System.Text;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
+using WebGallery.Application.Services.Identification;
 using WebGallery.Domain.Users;
 
 namespace WebGallery.Infrastructure.Security.Jwt
@@ -10,6 +11,12 @@ namespace WebGallery.Infrastructure.Security.Jwt
     public class JwtProvider : IJwtProvider
     {
         private readonly JwtOptions _options;
+
+        public string SecretKey
+            => _options.SecretKey;
+
+        public int ExpiredHours
+            => _options.ExpiredHours;
 
         public string GenerateToken(User user)
         {

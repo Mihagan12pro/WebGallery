@@ -2,7 +2,7 @@
 using Shared.Errors;
 using WebGallery.Domain.Users;
 
-namespace WebGallery.Application.Identification
+namespace WebGallery.Application.Services.Identification
 {
     public interface IIdentificationRepository
     {
