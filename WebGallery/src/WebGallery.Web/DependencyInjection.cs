@@ -1,11 +1,10 @@
-﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
+﻿using System.Text;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
-using System.Text;
 using WebGallery.Application;
 using WebGallery.Application.Services.Identification;
 using WebGallery.Infrastracture.PostgreSql;
 using WebGallery.Infrastructure.Security;
-using WebGallery.Infrastructure.Security.Jwt;
 
 namespace WebGallery.Web;
 

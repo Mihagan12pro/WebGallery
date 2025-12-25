@@ -25,6 +25,8 @@ namespace WebGallery.Presenters.Identification
 
             var token = response.Value;
 
+            HttpContext.Response.Cookies.Append("Gallery-cookies", token);
+
             return Ok(token);
         }
 
