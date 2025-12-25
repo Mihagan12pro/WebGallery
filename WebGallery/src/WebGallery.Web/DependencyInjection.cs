@@ -43,7 +43,7 @@ public static class DependencyInjection
         IServiceProvider serviceProvider = services.BuildServiceProvider();
 
         IJwtProvider jwtProvider = serviceProvider.GetRequiredService<IJwtProvider>();
-        IConfiguration configuration = serviceProvider.GetService<IConfiguration>()!;
+        IConfigurationRoot configuration = (IConfigurationRoot)serviceProvider.GetService<IConfiguration>()!;
 
         services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).
             AddJwtBearer(options =>
@@ -62,7 +62,7 @@ public static class DependencyInjection
                 {
                     OnMessageReceived = context =>
                     {
-                        context.Token = context.Request.Cookies[configuration.GetSection("cookie-title").ToString()];
+                        context.Token = context.Request.Cookies[configuration.GetSection("Constants:cookie").Value];
 
                         return Task.CompletedTask;
                     }
