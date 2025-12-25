@@ -32,4 +32,9 @@
       </None>
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="EntityConfigurations\Users\Permissions\" />
+      <Folder Include="EntityConfigurations\Users\Roles\" />
+    </ItemGroup>
+
 </Project>
