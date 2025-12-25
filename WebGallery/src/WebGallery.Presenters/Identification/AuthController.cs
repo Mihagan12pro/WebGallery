@@ -1,7 +1,9 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
 using WebGallery.Application.Services.Identification;
 using WebGallery.Contracts.Identification;
+using static CSharpFunctionalExtensions.Result;
 
 namespace WebGallery.Presenters.Identification
 {
@@ -10,6 +12,8 @@ namespace WebGallery.Presenters.Identification
     public class AuthController : ControllerBase
     {
         private readonly IIdentificationService _identificationService;
+
+        private readonly IConfiguration _configuration;
 
         [HttpPost("/login")]
         public async Task<IActionResult> Login(
@@ -25,7 +29,7 @@ namespace WebGallery.Presenters.Identification
 
             var token = response.Value;
 
-            HttpContext.Response.Cookies.Append("Gallery-cookies", token);
+            HttpContext.Response.Cookies.Append(_configuration.GetSection("cookie-title").ToString(), token);
 
             return Ok(token);
         }
@@ -43,9 +47,11 @@ namespace WebGallery.Presenters.Identification
             return Ok(response.Value);
         }
 
-        public AuthController(IIdentificationService identificationService)
+        public AuthController(IConfiguration configuration, IIdentificationService identificationService)
         {
             _identificationService = identificationService;
+
+            _configuration = configuration;
         }
     }
 }

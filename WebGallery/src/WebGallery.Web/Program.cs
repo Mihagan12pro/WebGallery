@@ -1,7 +1,7 @@
 ﻿using WebGallery.Web;
 using WebGallery.Web.Extensions;
 
-var builder = WebApplication.CreateBuilder(args);
+var builder = WebApplication.CreateBuilder();
 
 builder.Services.AddProgramDependencies();
 

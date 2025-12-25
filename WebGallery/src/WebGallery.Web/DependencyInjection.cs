@@ -1,6 +1,7 @@
-﻿using System.Text;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
+﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
+using System.Text;
 using WebGallery.Application;
 using WebGallery.Application.Services.Identification;
 using WebGallery.Infrastracture.PostgreSql;
@@ -42,6 +43,7 @@ public static class DependencyInjection
         IServiceProvider serviceProvider = services.BuildServiceProvider();
 
         IJwtProvider jwtProvider = serviceProvider.GetRequiredService<IJwtProvider>();
+        IConfiguration configuration = serviceProvider.GetService<IConfiguration>()!;
 
         services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).
             AddJwtBearer(options =>
@@ -54,6 +56,16 @@ public static class DependencyInjection
                     ValidateIssuerSigningKey = true,
                     IssuerSigningKey = new SymmetricSecurityKey(
                         Encoding.UTF8.GetBytes(jwtProvider.SecretKey))
+                };
+
+                options.Events = new JwtBearerEvents()
+                {
+                    OnMessageReceived = context =>
+                    {
+                        context.Token = context.Request.Cookies[configuration.GetSection("cookie-title").ToString()];
+
+                        return Task.CompletedTask;
+                    }
                 };
             });
 

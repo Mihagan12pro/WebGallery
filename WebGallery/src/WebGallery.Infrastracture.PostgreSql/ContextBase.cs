@@ -18,8 +18,6 @@ namespace WebGallery.Infrastracture.PostgreSql
             string? connectionString = _configuration.GetConnectionString(ConnectionStringRoot);
 
             optionsBuilder.UseNpgsql(connectionString);
-
-            //optionsBuilder.LogTo(Console.WriteLine);
         }
 
         public ContextBase(IConfiguration configuration)
