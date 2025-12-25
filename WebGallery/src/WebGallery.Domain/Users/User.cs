@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using WebGallery.Domain.Users.Roles;
 
 namespace WebGallery.Domain.Users
 {
@@ -14,6 +15,8 @@ namespace WebGallery.Domain.Users
 
         [Required()]
         public string? PasswordHash { get; private set; }
+
+        public ICollection<Role> Roles { get; set; } = [];
 
         public static User Create(Guid id, string userName, string email, string passwordHash)
         {
