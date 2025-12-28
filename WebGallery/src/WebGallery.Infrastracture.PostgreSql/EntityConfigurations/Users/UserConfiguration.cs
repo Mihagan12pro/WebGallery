@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using WebGallery.Domain.Users;
+using WebGallery.Domain.Users.PivotTables;
 using WebGallery.Domain.Users.Roles;
 
 namespace WebGallery.Infrastracture.PostgreSql.EntityConfigurations.Users

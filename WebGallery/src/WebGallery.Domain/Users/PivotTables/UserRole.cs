@@ -1,4 +1,4 @@
-﻿namespace WebGallery.Domain.Users
+﻿namespace WebGallery.Domain.Users.PivotTables
 {
     public class UserRole
     {
