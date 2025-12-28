@@ -1,7 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Options;
 using WebGallery.Domain.Comments;
 using WebGallery.Domain.Users;
+using WebGallery.Infrastracture.PostgreSql.EntityConfigurations.Users.Permissions;
+using WebGallery.Infrastracture.PostgreSql.Options.Authorization;
 
 namespace WebGallery.Infrastracture.PostgreSql;
 
@@ -11,31 +14,20 @@ public class WebGalleryContext : ContextBase
 
     public DbSet<User> Users { get; set; } = null!;
 
-    //protected override void OnModelCreating(ModelBuilder modelBuilder)
-    //{
-    //    modelBuilder.Entity<User>().
-    //        Property(u => u.Email).
-    //            HasColumnType("citext");
+    private readonly IOptions<AuthorizationOptions> _authOptions;
 
-    //    modelBuilder.Entity<User>().
-    //    Property(u => u.UserName).
-    //        HasColumnType("citext");
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        modelBuilder.ApplyConfigurationsFromAssembly(this.GetType().Assembly);
 
-    //    modelBuilder.Entity<User>().
-    //        HasIndex(u => u.Email).
-    //            IsUnique();
+        //modelBuilder.ApplyConfiguration(new PermissionConfiguration());
+    }
 
-
-    //    modelBuilder.Entity<User>().
-    //       HasIndex(u => u.UserName).
-    //           IsUnique();
-
-    //    modelBuilder.Entity<User>().
-    //        HasKey(u => u.Id);
-    //}
-
-    public WebGalleryContext(IConfiguration configuration)
+    public WebGalleryContext(
+        IConfiguration configuration,
+        IOptions<AuthorizationOptions> authOptions)
         : base(configuration)
     {
+        _authOptions = authOptions;
     }
 }
