@@ -3,7 +3,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Options;
 using WebGallery.Domain.Comments;
 using WebGallery.Domain.Users;
-using WebGallery.Infrastracture.PostgreSql.EntityConfigurations.Users.Permissions;
+using WebGallery.Infrastracture.PostgreSql.EntityConfigurations.Users.PivotTables;
 using WebGallery.Infrastracture.PostgreSql.Options.Authorization;
 
 namespace WebGallery.Infrastracture.PostgreSql;
@@ -20,7 +20,7 @@ public class WebGalleryContext : ContextBase
     {
         modelBuilder.ApplyConfigurationsFromAssembly(this.GetType().Assembly);
 
-        //modelBuilder.ApplyConfiguration(new PermissionConfiguration());
+        modelBuilder.ApplyConfiguration(new RolePermissionConfiguration(_authOptions.Value));
     }
 
     public WebGalleryContext(
