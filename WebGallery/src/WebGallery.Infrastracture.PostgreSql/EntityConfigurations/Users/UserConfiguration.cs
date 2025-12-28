@@ -5,7 +5,7 @@ using WebGallery.Domain.Users.Roles;
 
 namespace WebGallery.Infrastracture.PostgreSql.EntityConfigurations.Users
 {
-    internal class UsersConfiguration : IEntityTypeConfiguration<User>
+    internal class UserConfiguration : IEntityTypeConfiguration<User>
     {
         public void Configure(EntityTypeBuilder<User> builder)
         {
