@@ -1,13 +1,14 @@
-﻿using System.Text;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
+﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.IdentityModel.Tokens;
+using System.Text;
 using WebGallery.Application;
 using WebGallery.Application.Services.Identification;
 using WebGallery.Domain.Users.Permissions;
 using WebGallery.Infrastracture.PostgreSql;
 using WebGallery.Infrastracture.PostgreSql.Options.Authorization;
 using WebGallery.Infrastructure.Security;
+using WebGallery.Infrastructure.Security.AuthorizationRequirements;
 
 namespace WebGallery.Web;
 
@@ -56,6 +57,14 @@ public static class DependencyInjection
                 .SelectMany(pr => pr.Permissions)
                     .Distinct()
                         .ToArray();
+
+            foreach(string permission in permissions)
+            {
+                options.AddPolicy(permission, policy =>
+                {
+                    policy.AddRequirements(new PermissionRequirement(permission));
+                });
+            }
         });
     }
 
