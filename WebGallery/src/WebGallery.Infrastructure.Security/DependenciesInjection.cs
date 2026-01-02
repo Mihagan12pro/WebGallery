@@ -1,7 +1,9 @@
 ﻿using System.Reflection;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using WebGallery.Application.Services.Identification;
+using WebGallery.Infrastructure.Security.Handlers;
 using WebGallery.Infrastructure.Security.Jwt;
 using WebGallery.Infrastructure.Security.PasswordHashers;
 
@@ -18,6 +20,7 @@ namespace WebGallery.Infrastructure.Security
             services.AddScoped<IJwtProvider, JwtProvider>();
             services.AddScoped<IPasswordHasher, PasswordHasher>();
             services.Configure<JwtOptions>(_configuration.GetSection(nameof(JwtOptions)));
+            services.AddSingleton<IAuthorizationHandler, PermissionRequirementsHandler>();
 
             return services;
         }

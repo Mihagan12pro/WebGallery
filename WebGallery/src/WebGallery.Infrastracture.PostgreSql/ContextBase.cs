@@ -20,11 +20,11 @@ namespace WebGallery.Infrastracture.PostgreSql
             optionsBuilder.UseNpgsql(connectionString);
         }
 
-        public ContextBase(IConfiguration configuration)
+        public ContextBase(/*IConfiguration configuration*/)
         {
-            _configuration = configuration.AddPostgresConfiguration();
+            //_configuration = configuration.AddPostgresConfiguration();
 
-            ConnectionStringRoot = this.GetType().Name;
+            //ConnectionStringRoot = this.GetType().Name;
 
             Database.EnsureCreated();
         }

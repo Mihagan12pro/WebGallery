@@ -4,11 +4,14 @@ using Shared.Errors;
 using Shared.Errors.Common;
 using WebGallery.Application.Services.Identification;
 using WebGallery.Domain.Users;
+using WebGallery.Domain.Users.Permissions;
 using WebGallery.Infrastracture.PostgreSql.Extensions;
 
 namespace WebGallery.Infrastracture.PostgreSql.Repositories.Indentification
 {
-    internal class IdentificationRepository : WebGalleryRepositoryBase, IIdentificationRepository
+    internal class IdentificationRepository :
+        WebGalleryRepositoryBase,
+        IIdentificationRepository
     {
         public async Task<Result<Guid, Failure>> RegisterAsync(User user, CancellationToken cancellationToken)
         {
@@ -53,6 +56,11 @@ namespace WebGallery.Infrastracture.PostgreSql.Repositories.Indentification
                 return new InvalidPasswordOrLoginError().Failure;
 
             return user.PasswordHash!;
+        }
+
+        public Task<Result<IReadOnlyList<Permission>, Error>> GetPermissionByUserId(Guid userId)
+        {
+            throw new NotImplementedException();
         }
 
         public IdentificationRepository(WebGalleryContext context)
