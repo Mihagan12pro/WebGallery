@@ -1,10 +1,12 @@
-﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.Extensions.DependencyInjection;
+﻿using System.Text;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.IdentityModel.Tokens;
-using System.Text;
 using WebGallery.Application;
 using WebGallery.Application.Services.Identification;
+using WebGallery.Domain.Users.Permissions;
 using WebGallery.Infrastracture.PostgreSql;
+using WebGallery.Infrastracture.PostgreSql.Options.Authorization;
 using WebGallery.Infrastructure.Security;
 
 namespace WebGallery.Web;
@@ -17,6 +19,7 @@ public static class DependencyInjection
             AddLayersDependencies();
 
         services.AddApiAuthentification();
+        services.AddApiAuthorization();
 
         return services;
     }
@@ -37,8 +40,26 @@ public static class DependencyInjection
         return services;
     }
 
-    private static void AddApiAuthentification(
-        this IServiceCollection services)
+    private static void AddApiAuthorization(this IServiceCollection services)
+    {
+        IServiceProvider serviceProvider = services.BuildServiceProvider();
+        IConfiguration configuration = serviceProvider.GetService<IConfiguration>()!;
+
+        IConfigurationSection authorizationOptionsConfiguration = configuration.GetSection($"{nameof(AuthorizationOptions)}:{nameof(RolePermissions)}");
+
+        ICollection<RolePermissions> rolePermissions = [];
+        authorizationOptionsConfiguration.Bind(rolePermissions);
+
+        services.AddAuthorization(options =>
+        {
+            options.AddPolicy("admin", policy =>
+            {
+              
+            });
+        });
+    }
+
+    private static void AddApiAuthentification(this IServiceCollection services)
     {
         IServiceProvider serviceProvider = services.BuildServiceProvider();
 

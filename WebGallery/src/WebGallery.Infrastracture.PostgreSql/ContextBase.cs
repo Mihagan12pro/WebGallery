@@ -22,7 +22,7 @@ namespace WebGallery.Infrastracture.PostgreSql
 
         public ContextBase(IConfiguration configuration)
         {
-            _configuration = configuration.AddPsotgresConfiguration();
+            _configuration = configuration.AddPostgresConfiguration();
 
             ConnectionStringRoot = this.GetType().Name;
 

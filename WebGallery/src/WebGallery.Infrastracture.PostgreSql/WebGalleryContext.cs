@@ -14,20 +14,20 @@ public class WebGalleryContext : ContextBase
 
     public DbSet<User> Users { get; set; } = null!;
 
-    private readonly IOptions<AuthorizationOptions> _authOptions;
+    //private readonly IOptions<AuthorizationOptions> _authOptions;
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.ApplyConfigurationsFromAssembly(this.GetType().Assembly);
 
-        modelBuilder.ApplyConfiguration(new RolePermissionConfiguration(_authOptions.Value));
+       // modelBuilder.ApplyConfiguration(new RolePermissionConfiguration(_authOptions.Value));
     }
 
     public WebGalleryContext(
-        IConfiguration configuration,
-        IOptions<AuthorizationOptions> authOptions)
+        IConfiguration configuration//,
+      /*  IOptions<AuthorizationOptions> authOptions*/)
         : base(configuration)
     {
-        _authOptions = authOptions;
+       // _authOptions = authOptions;
     }
 }

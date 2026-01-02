@@ -27,7 +27,7 @@ public static class DependencyInjection
         return services;
     }
 
-    public static IConfiguration AddPsotgresConfiguration(this IConfiguration configuration)
+    public static IConfiguration AddPostgresConfiguration(this IConfiguration configuration)
     {
         string path = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "Configuration");
 
