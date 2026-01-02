@@ -10,7 +10,7 @@ namespace WebGallery.Infrastracture.PostgreSql.EntityConfigurations.Users
     {
         public void Configure(EntityTypeBuilder<User> builder)
         {
-            builder.HasKey(x => x.Id);
+            builder.HasKey(u => u.Id);
 
             builder.Property(u => u.Email).
                 HasColumnType("citext");
@@ -18,12 +18,11 @@ namespace WebGallery.Infrastracture.PostgreSql.EntityConfigurations.Users
             builder.Property(u => u.UserName).
              HasColumnType("citext");
 
-            builder.HasMany(u => u.Roles).
-                WithMany(u => u.Users).UsingEntity<UserRole>(
-                    ur => ur.HasOne<Role>().
-                        WithMany().
-                            HasForeignKey(r => r.RoleId).
-                            HasForeignKey(u => u.UserId));
+            builder.HasMany(u => u.Roles)
+                .WithMany(u => u.Users)
+                .UsingEntity<UserRole>(
+                    ur => ur.HasOne<Role>().WithMany().HasForeignKey(r => r.RoleId),
+                    ur => ur.HasOne<User>().WithMany().HasForeignKey(u => u.UserId));
         }
     }
 }

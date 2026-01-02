@@ -1,9 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using WebGallery.Domain.Users.Permissions;
 using WebGallery.Domain.Users.PivotTables;
-using WebGallery.Domain.Users.Roles;
-using WebGallery.Infrastracture.PostgreSql.Enums;
 using WebGallery.Infrastracture.PostgreSql.Options.Authorization;
 using Permission = WebGallery.Infrastracture.PostgreSql.Enums.Permission;
 using Role = WebGallery.Infrastracture.PostgreSql.Enums.Role;
