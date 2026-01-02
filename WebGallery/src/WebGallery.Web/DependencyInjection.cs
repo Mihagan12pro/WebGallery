@@ -18,7 +18,7 @@ public static class DependencyInjection
         services.AddWebDependencies().
             AddLayersDependencies();
 
-        services.AddApiAuthentification();
+        services.AddApiAuthentication();
         services.AddApiAuthorization();
 
         return services;
@@ -52,14 +52,14 @@ public static class DependencyInjection
 
         services.AddAuthorization(options =>
         {
-            options.AddPolicy("admin", policy =>
-            {
-              
-            });
+            string[] permissions = rolePermissions
+                .SelectMany(pr => pr.Permissions)
+                    .Distinct()
+                        .ToArray();
         });
     }
 
-    private static void AddApiAuthentification(this IServiceCollection services)
+    private static void AddApiAuthentication(this IServiceCollection services)
     {
         IServiceProvider serviceProvider = services.BuildServiceProvider();
 
