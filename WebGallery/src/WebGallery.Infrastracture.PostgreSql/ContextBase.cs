@@ -1,5 +1,4 @@
-﻿using System.Reflection;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 
@@ -20,11 +19,11 @@ namespace WebGallery.Infrastracture.PostgreSql
             optionsBuilder.UseNpgsql(connectionString);
         }
 
-        public ContextBase(/*IConfiguration configuration*/)
+        public ContextBase(IConfiguration configuration)
         {
-            //_configuration = configuration.AddPostgresConfiguration();
+            _configuration = configuration.AddPostgresConfiguration();
 
-            //ConnectionStringRoot = this.GetType().Name;
+            ConnectionStringRoot = this.GetType().Name;
 
             Database.EnsureCreated();
         }

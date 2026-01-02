@@ -3,6 +3,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Options;
 using WebGallery.Domain.Comments;
 using WebGallery.Domain.Users;
+using WebGallery.Infrastracture.PostgreSql.EntityConfigurations.Users.PivotTables;
+using WebGallery.Infrastracture.PostgreSql.Options.Authorization;
 
 namespace WebGallery.Infrastracture.PostgreSql;
 
@@ -12,20 +14,20 @@ public class WebGalleryContext : ContextBase
 
     public DbSet<User> Users { get; set; } = null!;
 
-    //private readonly IOptions<AuthorizationOptions> _authOptions;
+    private readonly ICollection<RolePermissions> _rolePermissionsCollection;
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.ApplyConfigurationsFromAssembly(this.GetType().Assembly);
 
-       // modelBuilder.ApplyConfiguration(new RolePermissionConfiguration(_authOptions.Value));
+        modelBuilder.ApplyConfiguration(new RolePermissionConfiguration(_rolePermissionsCollection));
     }
 
-    //public WebGalleryContext(
-    //    IConfiguration configuration//,
-    //  /*  IOptions<AuthorizationOptions> authOptions*/)
-    //    : base(configuration)
-    //{
-    //   // _authOptions = authOptions;
-    //}
+    public WebGalleryContext(
+        IConfiguration configuration,
+        ICollection<RolePermissions> rolePermissionsCollection)
+        : base(configuration)
+    {
+        _rolePermissionsCollection = rolePermissionsCollection;
+    }
 }

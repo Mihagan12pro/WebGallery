@@ -10,7 +10,7 @@ namespace WebGallery.Infrastracture.PostgreSql.EntityConfigurations.Users.PivotT
     internal class RolePermissionConfiguration
         : IEntityTypeConfiguration<RolePermission>
     {
-        //private readonly AuthorizationOptions _authorizationOptions;
+        private readonly ICollection<RolePermissions> _rolePermissionsCollection;
 
         public void Configure(EntityTypeBuilder<RolePermission> builder)
         {
@@ -21,21 +21,20 @@ namespace WebGallery.Infrastracture.PostgreSql.EntityConfigurations.Users.PivotT
 
         private RolePermission[] ParseRolePermissions()
         {
-            //return _authorizationOptions.RolePermissions.
-            //    SelectMany(rp => rp.Permissions.
-            //        Select(p => new RolePermission
-            //        {
-            //           RoleId = (int)Enum.Parse<Enums.Role>(rp.Role),
+            return _rolePermissionsCollection
+                .SelectMany(rp => rp.Permissions
+                    .Select(p => new RolePermission
+                    {
+                        RoleId = (int)Enum.Parse<Enums.Role>(rp.Role),
 
-            //           PermissionId = (int)Enum.Parse<Enums.Permission>(p),
-            //        }))
-            //        .ToArray(); 
-            throw new NotImplementedException();
+                        PermissionId = (int)Enum.Parse<Enums.Permission>(p)
+                    })
+                ).ToArray();
         }
 
-        public RolePermissionConfiguration(/*AuthorizationOptions authorizationOptions*/)
+        public RolePermissionConfiguration(ICollection<RolePermissions> rolePermissionsCollection)
         {
-           // _authorizationOptions = authorizationOptions;
+           _rolePermissionsCollection = rolePermissionsCollection;
         }
     }
 }
