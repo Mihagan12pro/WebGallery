@@ -1,6 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Options;
 using WebGallery.Domain.Comments;
 using WebGallery.Domain.Users;
 using WebGallery.Infrastracture.PostgreSql.EntityConfigurations.Users.PivotTables;
@@ -24,10 +24,13 @@ public class WebGalleryContext : ContextBase
     }
 
     public WebGalleryContext(
-        IConfiguration configuration,
-        ICollection<RolePermissions> rolePermissionsCollection)
-        : base(configuration)
+        IConfiguration localConfiguration,
+        IConfiguration globalConfiguration)
+        : base(localConfiguration, globalConfiguration)
     {
-        _rolePermissionsCollection = rolePermissionsCollection;
+        IConfigurationSection authorizationOptionsConfiguration = this.globalConfiguration.GetSection($"{nameof(AuthorizationOptions)}:{nameof(RolePermissions)}");
+
+        _rolePermissionsCollection = [];
+        authorizationOptionsConfiguration.Bind(_rolePermissionsCollection);
     }
 }

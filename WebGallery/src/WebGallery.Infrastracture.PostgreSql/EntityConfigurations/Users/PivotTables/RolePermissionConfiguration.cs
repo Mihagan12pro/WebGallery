@@ -3,7 +3,10 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using WebGallery.Domain.Users.Permissions;
 using WebGallery.Domain.Users.PivotTables;
 using WebGallery.Domain.Users.Roles;
+using WebGallery.Infrastracture.PostgreSql.Enums;
 using WebGallery.Infrastracture.PostgreSql.Options.Authorization;
+using Permission = WebGallery.Infrastracture.PostgreSql.Enums.Permission;
+using Role = WebGallery.Infrastracture.PostgreSql.Enums.Role;
 
 namespace WebGallery.Infrastracture.PostgreSql.EntityConfigurations.Users.PivotTables
 {
@@ -21,15 +24,20 @@ namespace WebGallery.Infrastracture.PostgreSql.EntityConfigurations.Users.PivotT
 
         private RolePermission[] ParseRolePermissions()
         {
+            foreach(var rp in _rolePermissionsCollection)
+            {
+                var RoleId = (int)Enum.Parse<Role>(rp.Role);
+            }
+
             return _rolePermissionsCollection
                 .SelectMany(rp => rp.Permissions
                     .Select(p => new RolePermission
                     {
-                        RoleId = (int)Enum.Parse<Enums.Role>(rp.Role),
+                        RoleId = (int)Enum.Parse<Role>(rp.Role),
 
-                        PermissionId = (int)Enum.Parse<Enums.Permission>(p)
+                        PermissionId = (int)Enum.Parse<Permission>(p)
                     })
-                ).ToArray();
+                ).ToArray()!;
         }
 
         public RolePermissionConfiguration(ICollection<RolePermissions> rolePermissionsCollection)

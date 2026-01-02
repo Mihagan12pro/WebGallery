@@ -1,7 +1,6 @@
 ﻿using System.Text;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using WebGallery.Application;
 using WebGallery.Application.Services.Identification;
@@ -51,8 +50,6 @@ public static class DependencyInjection
         ICollection<RolePermissions> rolePermissions = [];
         authorizationOptionsConfiguration.Bind(rolePermissions);
 
-        IOptions<AuthorizationOptions> authOptions = new AuthorizationOptions();
-
         services.AddAuthorization(options =>
         {
             string[] permissions = rolePermissions
@@ -67,8 +64,6 @@ public static class DependencyInjection
                     policy.AddRequirements(new PermissionRequirement(permission));
                 });
             }
-
-            authOptions = options;
         });
     }
 

@@ -8,24 +8,24 @@ namespace WebGallery.Infrastracture.PostgreSql
     {
         public ILogger Logger { get; }
 
-        private readonly IConfiguration _configuration;
+        protected readonly IConfiguration localConfiguration;
+        protected readonly IConfiguration globalConfiguration;
 
         public string ConnectionStringRoot { get; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            string? connectionString = _configuration.GetConnectionString(ConnectionStringRoot);
+            string? connectionString = localConfiguration.GetConnectionString(ConnectionStringRoot);
 
             optionsBuilder.UseNpgsql(connectionString);
         }
 
-        public ContextBase(IConfiguration configuration)
+        public ContextBase(IConfiguration localConfiguration, IConfiguration globalConfiguration)
         {
-            _configuration = configuration.AddPostgresConfiguration();
+            this.globalConfiguration = globalConfiguration;
+            this.localConfiguration = localConfiguration.AddPostgresConfiguration();
 
             ConnectionStringRoot = this.GetType().Name;
-
-            Database.EnsureCreated();
         }
     }
 }

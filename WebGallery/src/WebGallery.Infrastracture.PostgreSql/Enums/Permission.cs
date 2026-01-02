@@ -31,11 +31,11 @@ namespace WebGallery.Infrastracture.PostgreSql.Enums
         /// <summary>
         /// Block user
         /// </summary>
-        Block = 4,
+        BlockUser = 4,
 
         /// <summary>
         /// Unblock user
         /// </summary>
-        Unblock = 5,
+        UnblockUser = 5,
     }
 }
