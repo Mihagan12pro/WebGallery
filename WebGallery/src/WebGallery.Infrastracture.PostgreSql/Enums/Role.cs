@@ -11,11 +11,11 @@ namespace WebGallery.Infrastracture.PostgreSql.Enums
         /// <summary>
         /// Admin role
         /// </summary>
-        Admin,
+        Admin = 1,
 
         /// <summary>
         /// Simple user role
         /// </summary>
-        User,
+        User = 2,
     }
 }
