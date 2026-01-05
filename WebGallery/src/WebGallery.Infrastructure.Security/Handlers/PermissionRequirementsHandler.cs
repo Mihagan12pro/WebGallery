@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.Extensions.DependencyInjection;
+using System.Security.Claims;
 using WebGallery.Application.Services.Identification;
 using WebGallery.Domain.Users.Permissions;
 using WebGallery.Infrastructure.Security.AuthorizationRequirements;

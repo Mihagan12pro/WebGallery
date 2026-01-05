@@ -12,8 +12,8 @@ using WebGallery.Infrastracture.PostgreSql;
 namespace WebGallery.Infrastracture.PostgreSql.Migrations
 {
     [DbContext(typeof(WebGalleryContext))]
-    [Migration("20260102201756_AUthUpdateDb")]
-    partial class AUthUpdateDb
+    [Migration("20260103081408_Initial")]
+    partial class Initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -240,6 +240,12 @@ namespace WebGallery.Infrastracture.PostgreSql.Migrations
                         .HasColumnType("citext");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("Email")
+                        .IsUnique();
+
+                    b.HasIndex("UserName")
+                        .IsUnique();
 
                     b.ToTable("Users");
                 });

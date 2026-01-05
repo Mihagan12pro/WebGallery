@@ -23,6 +23,12 @@ namespace WebGallery.Infrastracture.PostgreSql.EntityConfigurations.Users
                 .UsingEntity<UserRole>(
                     ur => ur.HasOne<Role>().WithMany().HasForeignKey(r => r.RoleId),
                     ur => ur.HasOne<User>().WithMany().HasForeignKey(u => u.UserId));
+
+            builder.HasIndex(u => u.UserName)
+                .IsUnique();
+
+            builder.HasIndex(u => u.Email)
+                .IsUnique();
         }
     }
 }

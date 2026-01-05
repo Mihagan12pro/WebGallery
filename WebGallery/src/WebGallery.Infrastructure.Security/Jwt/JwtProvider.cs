@@ -27,7 +27,7 @@ namespace WebGallery.Infrastructure.Security.Jwt
                     securityKey,
                     SecurityAlgorithms.HmacSha256);
 
-            Claim[] claims = { new Claim("userId", user.Id.ToString()) };
+            Claim[] claims = { new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()) };
 
             JwtSecurityToken token =
                 new JwtSecurityToken(

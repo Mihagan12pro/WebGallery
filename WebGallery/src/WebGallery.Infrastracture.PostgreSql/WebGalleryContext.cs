@@ -32,5 +32,7 @@ public class WebGalleryContext : ContextBase
 
         _rolePermissionsCollection = [];
         authorizationOptionsConfiguration.Bind(_rolePermissionsCollection);
+
+        Database.Migrate();
     }
 }

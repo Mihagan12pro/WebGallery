@@ -2,22 +2,16 @@
 {
     public static class Permissions
     {
-        public static string Read
-            => nameof(Read);
+        public const string Read = nameof(Read);
 
-        public static string Edit
-            => nameof(Edit);
+        public const string Edit = nameof(Edit);
 
-        public static string Delete
-            => nameof(Delete);
+        public const string Delete = nameof(Delete);
 
-        public static string Create
-            => nameof(Create);
+        public const string Create = nameof(Create);
 
-        public static string BlockUser
-            => nameof(BlockUser);
+        public const string BlockUser = nameof(BlockUser);
 
-        public static string UnBlockUser
-            => nameof(UnBlockUser);
+        public const string UnBlockUser = nameof(UnBlockUser);
     }
 }
