@@ -74,9 +74,18 @@ public static class DependencyInjection
         IJwtProvider jwtProvider = serviceProvider.GetRequiredService<IJwtProvider>();
         IConfigurationRoot configuration = (IConfigurationRoot)serviceProvider.GetService<IConfiguration>()!;
 
-        services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).
+        services.AddAuthentication(options =>
+                {
+                    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                    options.DefaultSignInScheme = JwtBearerDefaults.AuthenticationScheme;
+                    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+                }
+            ).
             AddJwtBearer(options =>
             {
+                options.RequireHttpsMetadata = true;
+                options.SaveToken = true;
+
                 options.TokenValidationParameters = new TokenValidationParameters()
                 {
                     ValidateIssuer = false,

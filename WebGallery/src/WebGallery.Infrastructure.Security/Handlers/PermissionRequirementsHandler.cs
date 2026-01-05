@@ -16,7 +16,7 @@ namespace WebGallery.Infrastructure.Security.Handlers
             AuthorizationHandlerContext context,
             PermissionRequirement requirement)
         {
-            var userIdClaim = context.User.Claims.FirstOrDefault(c => c.Type == "userId");
+            var userIdClaim = context.User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier);
 
             using (var scope = _serviceScopeFactory.CreateScope())
             {
